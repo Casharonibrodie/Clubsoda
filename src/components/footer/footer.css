@@ -1,0 +1,39 @@
+footer{
+    background-color: #000;
+}
+.footer-content { color: #fff; }
+.footer-links-section { display: flex; flex-wrap: wrap; gap: 30px; justify-content: space-between; }
+.footer-links-section>div { }
+.footer-links-section>div h6 { font-weight: 700; letter-spacing: 0.48px; font-size: 18px; margin-bottom: 40px; }
+.footer-links-section>div ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 25px; font-size: 13px;  }
+.footer-links-section>div ul a { color: #fff; text-decoration: none; }
+.footer-links-section>div ul a:hover { background: linear-gradient(to top, #D446F1, #9A35EB);-webkit-text-fill-color: transparent;  -webkit-background-clip: text; }
+
+.footer-logo { text-align: center; }
+.footer-logo img {     max-width: 1100px; }
+
+.footer-bottom { background-color: #fff; padding: 100px 50px !important;  }    
+.footer-bottom-menu { display: flex; flex-wrap: wrap; gap: 55px; justify-content: flex-end; }
+.footer-bottom-menu h6 { font-weight: 700; letter-spacing: 0.48px; font-size: 18px; margin-bottom: 11px; text-transform: uppercase;     letter-spacing: 3px; }
+.footer-bottom-menu  ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 7px; font-size: 13px;  }
+.footer-bottom-menu  ul a { color: #000; text-decoration: none; }
+.footer-bottom-menu  ul a:hover { background: linear-gradient(to top, #D446F1, #9A35EB);-webkit-text-fill-color: transparent;  -webkit-background-clip: text; }
+.copy-right { margin: 0; font-family: "Inter", serif; font-size: 15px; font-weight: 700; }
+
+
+@media only screen and (max-width: 767px) { 
+    .footer-links-section>div ul { gap: 27px;}
+    .footer-links-section { justify-content: flex-start; }
+    .footer-links-section>div {  width: calc(50% - 20px); }
+}
+
+
+@media only screen and (max-width: 480px) { 
+    .footer-links-section { flex-direction: column;}
+    .footer-links-section>div {  width: 100%; }
+    .footer-links-section>div:nth-child(even) { text-align: right; }
+    .footer-bottom { padding: 30px 30px !important; }
+    .footer-bottom-menu { gap: 20px; justify-content: space-between; margin-bottom: 65px; }
+    .footer-bottom-menu ul { font-size: 16px; }
+    .copy-right { font-size: 12px; }
+}
