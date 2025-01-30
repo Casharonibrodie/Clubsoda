@@ -1,6 +1,5 @@
 .LandingPage-Background {
   position: relative;
- /* background-image: url('https://cdn.sanity.io/images/immva1rv/production/f5b65a08cc78dd82b4614cc665bdec7475721b95-1920x945.jpg');*/
   background-size: cover;
   background-position: center;
   min-height:100vh; 
@@ -70,7 +69,7 @@
 }
 
 .LandingPage-mark {
-  background-image: url('https://cdn.sanity.io/images/immva1rv/production/ad287977b5b817e785bdc9bf89d86f321f9e65fd-150x159.png');
+  background-image: url('https://doctest.a2hosted.com/clubsoda/wp-backend/wp-content/uploads/2025/01/perception-image.png');
   background-size: contain;
   background-repeat: no-repeat;
   width: 110px; /* 80% of 150px */
