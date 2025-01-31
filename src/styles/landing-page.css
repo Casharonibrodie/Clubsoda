@@ -76,7 +76,7 @@
   height: 110px; /* 80% of 158px */
 }
 
-.LandingPage-menu-wrapper {text-align: left; padding: 0 130px;  display: flex; flex-wrap: wrap; gap: 20px; /* 80% of 151px */ }
+.LandingPage-menu-wrapper {text-align: left; padding: 0 144px;  display: flex; flex-wrap: wrap; gap: 20px; /* padding chnaged to 144px*/ }
 .LandingPage-menu-wrapper>div:first-child { width: calc(41.33% - 20px); }
 .LandingPage-menu-wrapper>div { width: calc(29.33% - 20px); }
 
@@ -131,7 +131,7 @@
   position: relative;
   list-style-type: none;
   font-size: 24px;
-  line-height: 40px;
+  line-height: 24px;
   font-weight: 600;
 }
 

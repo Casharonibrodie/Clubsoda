@@ -18,8 +18,8 @@
 .contact-main-content h1 { font-size: 46px;  letter-spacing: 0.48px;  font-weight: 600; color: #ffffff; text-align: center; text-transform: uppercase; margin-bottom: 32px; }
 
 .contact-form-background { background-color: #0c0c0c; height: 100%; min-height: 100vh; width: auto; padding: 50px; }
-.contact-nav-form-text h2{ font-size: 24px; /* Reduced from 24px */ line-height: 45px; /* Reduced from 49px */ font-weight: 600; color: #fefefe99; }
-.contact-nav-form-text h2 {     color: #fffefecc; text-align: right; font-size: 32px; text-transform: uppercase; font-weight: 600; }
+.contact-nav-form-text {display: flex; align-items: flex-end;}
+.contact-nav-form-text h2 {     color: #fffefecc; text-align: right; font-size: 28px; text-transform: uppercase; font-weight: 600; line-height: 0.8;}
 .contact-form { margin-top: 100px; /* Reduced from 121px */ display: flex; justify-content: center; }
 .contact-form-wrapper { width:1050px; }
 .contact-form-back {  margin-bottom: 60px; display: flex; align-items: flex-start; }

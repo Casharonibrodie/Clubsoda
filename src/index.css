@@ -271,7 +271,9 @@ a {
   line-height: 22px;
 }
 
-.inner-header { display: flex; justify-content: space-between; height: 40px;     gap: 15px; }
+.inner-header { display: flex; justify-content: space-between; height: 40px; gap: 15px; align-items: flex-end; }
+
+.inner-header h2{ line-height: 0.8; font-size: 28px;color: #fffefecc; text-align: right; text-transform: uppercase;}
 
 .inner-nav-wrapper{ display: flex; flex-direction: column; }
 .inner-nav-links ul,

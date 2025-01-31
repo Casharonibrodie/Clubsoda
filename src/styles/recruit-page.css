@@ -9,8 +9,8 @@
 
 
 .recruit-form-background { background-color: #0c0c0c; height: 100%; min-height: 100vh; width: auto; padding: 50px; }
-.recruit-nav-form-text { font-size: 24px; line-height: 45px; font-weight: 600; color: #fefefe99; }
-.recruit-nav-form-text h2 {     color: #fffefecc; text-align: right; font-size: 32px; text-transform: uppercase; font-weight: 600; }
+.recruit-nav-form-text { font-size: 24px; line-height: 45px; font-weight: 600; color: #fefefe99; display: flex; align-items: flex-end; }
+.recruit-nav-form-text h2 {     color: #fffefecc; text-align: right; font-size: 28px; text-transform: uppercase; font-weight: 600; line-height: 0.8; }
 .recruit-form { margin-top: 100px; display: flex; justify-content: center; }
 .recruit-form-wrapper { width: 720px; /* Reduced from 800px */ }
 .recruit-form-back { margin-bottom: 69px; /* Reduced from 76.8px */ display: flex; align-items: flex-start; }
