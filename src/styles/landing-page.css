@@ -71,9 +71,10 @@
 .LandingPage-mark {
   background-image: url('https://doctest.a2hosted.com/clubsoda/wp-backend/wp-content/uploads/2025/01/perception-image.png');
   background-size: contain;
+  background-position: right;
   background-repeat: no-repeat;
-  width: 110px; /* 80% of 150px */
-  height: 110px; /* 80% of 158px */
+  width: 112px; /* 80% of 150px */
+  height: 112px; /* 80% of 158px */
 }
 
 .LandingPage-menu-wrapper {text-align: left; padding: 0 144px;  display: flex; flex-wrap: wrap; gap: 20px; /* padding chnaged to 144px*/ }
@@ -131,8 +132,11 @@
   position: relative;
   list-style-type: none;
   font-size: 24px;
-  line-height: 24px;
+  line-height: 40px;
   font-weight: 600;
+
+}.LandingPage-bottom-menu li{
+  line-height: 24px;
 }
 
 .submenu li img {

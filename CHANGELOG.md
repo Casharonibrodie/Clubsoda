@@ -12,6 +12,12 @@
 padding: 0 130px; /* padding changed to 144px*/
 }
 
+.LandingPage-mark {<br>
+    width: 110 -> 112 <br>
+    height: 110 -> 112 <br>
+    background-position: left; //newly added<br>
+}
+
 
 #### index.css:
 
