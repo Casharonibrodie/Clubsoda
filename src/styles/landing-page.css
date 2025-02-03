@@ -21,7 +21,7 @@
   position: absolute;
   top: 23%;
   right: 10%;
-  max-height: 171.88px;
+  max-height: 172px;
   width: auto;
   height: auto;
   display: flex;
@@ -48,7 +48,7 @@
 
 .LandingPage-Textbox {
   width: 522.4px; /* 80% of 653px */
-  height: 38.4px; /* 80% of 48px */
+  height: 72px; /* 80% of 48px */
 }
 
 .LandingPage-Textbox h2 {

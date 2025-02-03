@@ -106,6 +106,8 @@ a {
   /*background: linear-gradient(to top, #000, #000);*/
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
+  border-radius: 50px;
+  box-shadow:0 0 5px 4px rgba(255, 255, 255, 0.6);
 } 
 
 .white-button:hover::before {
@@ -280,7 +282,7 @@ a {
 .mobile-header ul { margin-top: 7.2px; }
 
 .inner-nav-links li a,
-.mobile-header li a { font-size: 17.28px; line-height: 31.68px; font-weight: 600; text-decoration: none; color: #fffefecc; transition: color 0.5s ease; }
+.mobile-header li a { font-size: 17.28px; line-height: 25px; font-weight: 600; text-decoration: none; color: #fffefecc; transition: color 0.5s ease; }
 
 .inner-nav-links li,
 .mobile-header li { list-style-type: none; position: relative; }

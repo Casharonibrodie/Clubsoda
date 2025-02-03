@@ -163,7 +163,6 @@ function AboutPage() {
                     <p>{parse(acf.about_section_6.section_6_perception_subtitle)}</p>
                 </div>
             </div>
-            <p className="position-text">{parse(acf.about_section_6.section_6_perception_text)}</p>
         </div>
 
 
