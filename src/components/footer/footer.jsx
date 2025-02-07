@@ -18,6 +18,7 @@ function Footer() {
       const { username, password } = CREDENTIALS;
       const base64credentials = btoa(`${username}:${password}`);
       try {
+        // Fetch primary menu data
         const primaryResponse = await fetch(
           "https://doctest.a2hosted.com/clubsoda/wp-backend/wp-json/wp/v2/menu-items?menus=7&_fields=id,title,url,parent",
           {
@@ -33,6 +34,7 @@ function Footer() {
         } else {
           console.error("Failed to fetch primary menu data");
         }
+        // Fetch secondary menu data
         const secondaryResponse = await fetch(
           "https://doctest.a2hosted.com/clubsoda/wp-backend/wp-json/wp/v2/menu-items?menus=6&_fields=id,title,url,parent",
           {
@@ -64,10 +66,13 @@ function Footer() {
   const topLevelMenus = secondaryMenuData.filter((item) => item.parent === 0);
 
   const generateSlug = (title) => {
-    if (title.toLowerCase() === "home") return "/";
-    return `/${title.toLowerCase().trim().replace(/\s+/g, "-").replace(/[^\w-]+/g, "")}`;
-};
-
+    return title
+      .toLowerCase()
+      .trim()
+      .replace(/\s+/g, "-")
+      .replace(/[^\w-]+/g, "");
+  };
+  
 
   return (
     <footer>
@@ -80,7 +85,11 @@ function Footer() {
                 <ul>
                   {getChildren(secondaryMenuData, menu.id).map((child) => (
                     <li key={child.id}>
-                      <a href={child.url}>{decodeHTMLEntities(child.title.rendered)}</a>
+                       <Link 
+                          to={`/?outerMenuSlug=${generateSlug(menu.title.rendered)}&innerMenuSlug=${generateSlug(child.title.rendered)}`}
+                        >
+                          {decodeHTMLEntities(child.title.rendered)}
+                        </Link>
                     </li>
                   ))}
                 </ul>
@@ -105,7 +114,7 @@ function Footer() {
               <ul>
                 {getChildren(menuData, menuData.find((item) => item.title.rendered === "MENU")?.id || 0).map((item) => (
                   <li key={item.id}>
-                    <Link to={generateSlug(item.title.rendered)}>
+                    <Link to={`/${item.title.rendered.toLowerCase().trim().replace(/\s+/g, "-").replace(/[^\w-]+/g, "")}`}>
                         {item.title.rendered}
                     </Link>
                   </li>

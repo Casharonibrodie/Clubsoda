@@ -8,13 +8,14 @@ import ContactPage from "./pages/contactPage/contactPage";
 import ContactPageForm from "./pages/contactPage/contactPageForm";
 
 
+
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/about" element={<AboutPage />} />
-        <Route path="/solutions" element={<ServicePage />} />
+        <Route path="/services/:serviceSlug" element={<ServicePage />} />
         <Route path="/recruit" element={<RecruitPage />} />
         <Route path="/recruit/form" element={<RecruitPageForm />} />
         <Route path="/contact" element={<ContactPage />} />

@@ -50,14 +50,14 @@ function RecruitPage() {
 
   return (
     <>
-      <div
-        className="recruit-background"
-        style={{
-          backgroundImage:  `url(${acf.recruit_header.recruit_background_image})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
+      <div className="recruit-background">
+      <video
+        src="https://doctest.a2hosted.com/clubsoda/wp-backend/wp-content/uploads/2025/01/red-balls.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+      ></video>
         <MainHeader 
         sectionTitle={parse(acf.recruit_header.recruit_banner_text)}            
         menuOpen={menuOpen}

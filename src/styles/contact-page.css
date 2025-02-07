@@ -1,4 +1,5 @@
 .contact-background{ background-size: cover; background-repeat: no-repeat; height: auto; min-height:100vh; width: auto; padding: 50px; }
+.contact-background video{ position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; object-fit: cover; z-index: -1;}
 .contact-nav-wrapper { margin-bottom: 64px; }
 .contact-nav-header { display: flex; justify-content: space-between; }
 .contact-logo { background-size: cover; background-repeat: no-repeat; width: 234px; height: 38px; }

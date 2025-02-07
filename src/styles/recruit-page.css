@@ -1,4 +1,5 @@
 .recruit-background { height: auto; min-height:100vh; width: auto; padding: 50px; }
+.recruit-background video{ position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; object-fit: cover; z-index: -1;}
 .recruit-nav-wrapper { margin-bottom: 64px; }
 .recruit-nav-header { display: flex; justify-content: space-between; }
 .recruit-logo { background-size: cover; background-repeat: no-repeat; width: 234px; height: 38.16px; }

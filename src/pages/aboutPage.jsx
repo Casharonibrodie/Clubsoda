@@ -48,7 +48,7 @@ function AboutPage() {
         >
 
         <MainHeader 
-        sectionTitle={parse(acf.about_section_1.section_title)}
+        sectionTitle={parse(acf.about_section_banner.section_banner_text)}
         menuOpen={menuOpen}
         setMenuOpen={setMenuOpen}
         />
@@ -82,7 +82,7 @@ function AboutPage() {
         {/* About Section 4 */}
         <div className="about-section-4">
             <div className="about-image-right">
-                {acf.about_section_3.section_3_images_2.map((imageUrl, index) => (
+                {acf.about_section_3.section_3_images_1.map((imageUrl, index) => (
                 <div className="about-section-image" key={index}>
                     <img src={imageUrl} alt={`About Section Image ${index + 1}`} />
                 </div>

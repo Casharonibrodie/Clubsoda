@@ -1,4 +1,3 @@
-
 import '../../styles/contact-page.css';
 import { useState, useEffect} from 'react';
 import parse from 'html-react-parser';
@@ -44,14 +43,14 @@ function ContactPage() {
   const acf = data.acf;
 
   return (
-    <div
-      className="contact-background"
-      style={{
-        backgroundImage: `url(${acf.contact_header.contact_background_image})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
+    <div className="contact-background">
+      <video
+        src="https://doctest.a2hosted.com/clubsoda/wp-backend/wp-content/uploads/2025/02/Gradientwavyballs.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+      ></video>
       <MainHeader
         sectionTitle={parse(acf.contact_header.contact_banner_text)}
         menuOpen={menuOpen}
