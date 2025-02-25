@@ -114,10 +114,14 @@ a {
   transform: translate(-50%, 20%);
   opacity: 100%;
 }
-
-
-
-
+.scrollArea {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+}
 
 .violet-button {
   position: relative;
@@ -273,7 +277,7 @@ a {
   line-height: 22px;
 }
 
-.inner-header { display: flex; justify-content: space-between; height: 40px; gap: 15px; align-items: flex-end; }
+.inner-header { display: flex; justify-content: space-between; height: 40px; gap: 15px; align-items: flex-end; z-index: 1;}
 
 .inner-header h2{ line-height: 0.8; font-size: 28px;color: #fffefecc; text-align: right; text-transform: uppercase;}
 

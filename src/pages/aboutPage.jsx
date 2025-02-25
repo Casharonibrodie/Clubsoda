@@ -39,48 +39,53 @@ function AboutPage() {
     <div className="about-page">
 
         {/* About Section 1 */}
-        <div className="about-hero-section"
-        style={{
-            backgroundImage: `url(${acf.about_section_banner.section_banner_image})`,
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-          }}
-        >
-
-        <MainHeader 
-        sectionTitle={parse(acf.about_section_banner.section_banner_text)}
-        menuOpen={menuOpen}
-        setMenuOpen={setMenuOpen}
-        />
+        <div className="about-hero-section">
+            <video
+            src="https://doctest.a2hosted.com/clubsoda/wp-backend/wp-content/uploads/2025/02/Emitter.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            ></video>
+            <MainHeader 
+            sectionTitle={parse(acf.about_section_banner.section_banner_text)}
+            menuOpen={menuOpen}
+            setMenuOpen={setMenuOpen}
+            />
+            <div className={`nav-open-content ${menuOpen ? "hidden" : ""}`}>
+                    <div className="about-section-1-content">
+                        <span className="text">Brought to you by
+                            <a className="swing" href="https://www.mcintoshbros.com/">
+                                <img className="logo" src="https://doctest.a2hosted.com/clubsoda/wp-backend/wp-content/uploads/2025/02/mcntosh-removebg-preview.png" alt="McIntosh Bros"/>
+                            </a>
+                        </span>
+                    </div>
+            </div>
         </div>
 
         <div className={`nav-open-content ${menuOpen ? "hidden" : ""}`}>
 
-
         {/* About Section 2 */}
-        <div className="about-section-2"
-          style={{
-            backgroundImage: `url(${acf.about_section_1.section_image})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-          }}
-        >
+        <div className="about-section-2">
             <div className="about-section-2-content">
-                <h2>{parse(acf.about_section_1.section_title)}</h2>
-                <p>{parse(acf.about_section_1.section_description)}</p>
+                <h2>The <span className="grey-color-text">yin</span> to your <span className="grey-color-text">yang</span>:<br/>
+                Multiple touchpoints for brands and creators</h2>
             </div>
         </div>
 
         {/* About Section 3 */}
         <div className="about-section-3">
-            <img className='about-desktop-background' src={acf.about_section_2.section_2_image.url}></img>
-            <img className='about-mobile-background' src={acf.about_section_2.section_2_image_mobile.url}></img>
+            <div className="about-section-3-content">
+           <h2> At<img src="https://doctest.a2hosted.com/clubsoda/wp-backend/wp-content/uploads/2025/01/clubsoda-footer-logo.png"></img> , we&apos;re more than an agency — we&apos;re a <span className="grey-color-text">collective network</span> of creatives and critical thinkers, Bridging brands and creative minds to deliver products that turn heads. Whether you’re an individual <span className="grey-color-text">creator</span>, a <span className="grey-color-text">startup</span> with big ideas, or an established <span className="grey-color-text">brand</span> looking for a fresh spark, we&apos;ll make your brand pop like bubble wrap — but way more satisfying.</h2>
+            </div>
         </div>
 
 
         {/* About Section 4 */}
         <div className="about-section-4">
+            <div className="about-section-content-right">
+            {parse(acf.about_section_3.section_3_experience)}
+            </div>
             <div className="about-image-right">
                 {acf.about_section_3.section_3_images_1.map((imageUrl, index) => (
                 <div className="about-section-image" key={index}>
@@ -89,7 +94,7 @@ function AboutPage() {
                 ))}
             </div>
             <div className="about-section-content-left">
-            {parse(acf.about_section_3.section_3_experience)}
+            {parse(acf.about_section_3.section_3_products)}
             </div>
             <div className="about-image-left">
                 {acf.about_section_3.section_3_images_2.map((imageUrl, index) => (
@@ -99,7 +104,7 @@ function AboutPage() {
                 ))}
             </div>
             <div className="about-section-content-right">
-            {parse(acf.about_section_3.section_3_products)}
+            {parse(acf.about_section_3.section_3_awards)}
             </div>
             <div className="about-image-right">
                 {acf.about_section_3.section_3_images_3.map((imageUrl, index) => (
@@ -107,9 +112,6 @@ function AboutPage() {
                     <img src={imageUrl} alt={`About Section Image ${index + 1}`} />
                 </div>
                 ))}
-            </div>
-            <div className="about-section-content-left">
-            {parse(acf.about_section_3.section_3_awards)}
             </div>
         </div>
 
