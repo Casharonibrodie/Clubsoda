@@ -54,9 +54,9 @@ function AboutPage() {
             />
             <div className={`nav-open-content ${menuOpen ? "hidden" : ""}`}>
                     <div className="about-section-1-content">
-                        <span className="text">Brought to you by
-                            <a className="swing" href="https://www.mcintoshbros.com/">
-                                <img className="logo" src="https://doctest.a2hosted.com/clubsoda/wp-backend/wp-content/uploads/2025/02/mcntosh-removebg-preview.png" alt="McIntosh Bros"/>
+                        <span>Brought to you by
+                            <a className="swing mcintosh" href="https://www.mcintoshbros.com/" target="_blank">
+                                McIntosh
                             </a>
                         </span>
                     </div>
@@ -108,7 +108,7 @@ function AboutPage() {
             </div>
             <div className="about-image-right">
                 {acf.about_section_3.section_3_images_3.map((imageUrl, index) => (
-                <div className="about-section-image" key={index}>
+                <div className="about-section-image last-about-section-image" key={index}>
                     <img src={imageUrl} alt={`About Section Image ${index + 1}`} />
                 </div>
                 ))}

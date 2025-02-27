@@ -311,7 +311,7 @@ function LandingPage() {
         <div className="LandingPage-Wrapper" ref={wrapperRef}>
           <div className="LandingPage-Logo" ref={logoRef}></div>
           <div className="LandingPage-Textbox" ref={textRef}>
-            <h2>Strategic Partners for <br />Brands + Creators</h2>
+            <h2>Strategic Solutions for <br />Brands + Creators</h2>
           </div>
         </div>
   
@@ -435,7 +435,7 @@ function LandingPage() {
       <div className="LandingPage-Wrapper" ref={wrapperRef}>
         <div className="LandingPage-Logo" ref={logoRef}></div>
         <div className="LandingPage-Textbox" ref={textRef}>
-          <h2>Strategic Partners for <br />Brands + Creators</h2>
+          <h2>Strategic Solutions for <br />Brands + Creators</h2>
         </div>
       </div>
   
