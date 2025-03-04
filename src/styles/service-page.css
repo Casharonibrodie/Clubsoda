@@ -4,22 +4,22 @@
     background-color: #252525;     overflow: auto;
 }
 
-.services-page-container > div,
-.services-page-container > footer {
-    margin: 20px;
-    background: #000;
-}
+.services-page-container > div{background: #000;}
+.services-page-container > footer {margin: 20px;}
 
 .service-header { padding: 25px;     margin-bottom: 0 !important; }
 .service-header .two-column>div.img-section { text-align: left; }
 .service-header img {     max-width: 50px; }
 .service-header a { margin-top: 0;}
-.service-framer {  margin-top: 0 !important;}
+.service-framer {  margin-top: 0 !important; height: 100vh;}
 
 .services-page-container .join-club { padding: 270px 65px; }
 
 .services-page-container .join-club .button { margin-top: 30px; }
 .service-framer h2 { font-weight: 800; }
+@media only screen and (max-width: 1199px){
+    .service-framer{height: auto;}
+}
 
 @media only screen and (max-width: 1024px) {
     .service-framer  p { font-size: 13px; line-height: 140%; }
@@ -27,12 +27,17 @@
 }
 
 @media only screen and (max-width: 767px) {
+
     .service-header>.two-column { display: none; }
     .service-header { padding: 35px 0; background-color: #252525!important; padding-top: 0; }
     .service-header img {max-width: 100px; }
     .two-column { flex-direction: column; }
     .two-column > div { width: 100%; }
     .services-page-container .mobile-menu-container { background: #252525; transition: color 0.3s ease; }
+    .services-page-container > div,
+    .services-page-container > footer {
+    margin: 3vw;
+}
 }
 
 @media only screen and (max-width: 480px) {

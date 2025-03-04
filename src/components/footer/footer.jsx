@@ -67,10 +67,14 @@ function Footer() {
 
   const generateSlug = (title) => {
     return title
-      .toLowerCase()
-      .trim()
-      .replace(/\s+/g, "-")
-      .replace(/[^\w-]+/g, "");
+    .toLowerCase()             
+    .trim()
+    .replace(/\/+/g, "")        
+    .replace(/&/g, "_&_")       
+    .replace(/[-]+/g, "_")      
+    .replace(/\s+/g, "_")       
+    .replace(/_+/g, "_")        
+    .replace(/[^a-z0-9_&]+/g, "");
   };
   
 

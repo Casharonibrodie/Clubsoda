@@ -50,31 +50,58 @@ function ServicePage() {
 
   console.log("Available ACF Keys:", Object.keys(acf));
 
-  let formattedServiceSlug = serviceSlug.replace(/-/g, "_");
+  const generateSlug = (title) => {
+    return title
+      .toLowerCase()               
+      .trim()
+      .replace(/\/+/g, "")          
+      .replace(/&/g, "_&_")         
+      .replace(/[-]+/g, "_")        
+      .replace(/\s+/g, "_")         
+      .replace(/_+/g, "_")          
+      .replace(/[^a-z0-9_&]+/g, ""); 
+  };
+  
 
-  let service = acf[formattedServiceSlug] || null;
 
-  if (!service) {
-    console.log(`Service Not Found for: ${formattedServiceSlug}`);
-
-    const possibleMatches = Object.keys(acf).filter((key) =>
-      key.includes(serviceSlug.replace(/-/g, "_"))
-    );
-
-    console.log("Possible Matches Found:", possibleMatches);
-
-    if (possibleMatches.length > 0) {
-      formattedServiceSlug = possibleMatches[0]; 
+    let formattedServiceSlug = `services_section_${generateSlug(serviceSlug)}`;
+    console.log("Formatted Service Slug:", formattedServiceSlug);
+    
+    let service = acf[formattedServiceSlug] || null;
+    
+    if (!service) {
+      console.log(`Service Not Found for: ${formattedServiceSlug}`);
+    
+      const possibleMatches = Object.keys(acf).filter((key) =>
+        key.includes(`services_section_${serviceSlug.replace(/-/g, "_")}`)
+      );
+    
+      console.log("Possible Matches Found:", possibleMatches);
+    
+      // Prioritize exact match before taking first possible match
+      const exactMatch = possibleMatches.find((key) => key === formattedServiceSlug);
+    
+      if (exactMatch) {
+        formattedServiceSlug = exactMatch; // Use exact match
+      } else if (possibleMatches.length > 0) {
+        formattedServiceSlug = possibleMatches.find(key => key === `services_section_${serviceSlug}`) || possibleMatches[0]; // Prioritize "services_section_vtuber"
+      }
+    
       service = acf[formattedServiceSlug];
       console.log(`Using closest match: ${formattedServiceSlug}`);
     }
-  }
+    
+    const specialRedirectServices = ["live_streamer", "vtuber", "content_creator"];
+    console.log("Checking ACF for:", formattedServiceSlug);
+    console.log("ACF Keys Available:", Object.keys(acf));
+    console.log("ACF Data for Key:", acf[formattedServiceSlug] || "NOT FOUND");
 
-  if (!service) {
-    return <div className="error-message">Service not found</div>;
-  }
+    
 
-  console.log("Loaded Service Data:", service);
+    if (!service) {
+      return <div className="error-message">Service not found</div>;
+    }
+
 
   return (
     <>
@@ -104,14 +131,14 @@ function ServicePage() {
               </p>
 
 
-<ul className="list">
-  {service[`${formattedServiceSlug}_features`] &&
-    Object.values(service[`${formattedServiceSlug}_features`]).map((feature, index) =>
-      feature ? ( // Ensure feature is not empty/null
-        <li key={index}>{parse(feature)}</li> // Parse to render HTML properly
-      ) : null
-    )}
-</ul>
+            <ul className="list">
+              {service[`${formattedServiceSlug}_features`] &&
+                Object.values(service[`${formattedServiceSlug}_features`]).map((feature, index) =>
+                  feature ? ( // Ensure feature is not empty/null
+                    <li key={index}>{parse(feature)}</li> // Parse to render HTML properly
+                  ) : null
+                )}
+            </ul>
 
 
               <Link className="violet-border-button button left color-icon"
@@ -133,7 +160,8 @@ function ServicePage() {
         >
           <div className="content-width">
             <h2>{parse(acf.services_section_2.services_section_2_title || "")}</h2>
-            <Link className="violet-border-button button" to={acf.services_section_2.contact_us || "/contact"}>
+            <Link className="violet-border-button button" to={specialRedirectServices.includes(serviceSlug) ? "/recruit" : decodeURIComponent(acf.services_section_2.contact_us || "/contact")}>
+
               CONTACT US<i className="fa-solid fa-arrow-right"></i>
             </Link>
           </div>
@@ -143,5 +171,4 @@ function ServicePage() {
     </>
   );
 }
-
 export default ServicePage;

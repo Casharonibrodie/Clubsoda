@@ -6,6 +6,7 @@ import RecruitPage from "./pages/recruitPage/recruitPage";
 import RecruitPageForm from "./pages/recruitPage/recruitPageForm";
 import ContactPage from "./pages/contactPage/contactPage";
 import ContactPageForm from "./pages/contactPage/contactPageForm";
+import ComingSoon from "./pages/coming-soon";
 
 
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/recruit/form" element={<RecruitPageForm />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/contact/form" element={<ContactPageForm />} />
+        <Route path="/coming-soon" element={<ComingSoon/>} />
       </Routes>
     </Router>
   );

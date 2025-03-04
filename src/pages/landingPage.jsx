@@ -163,38 +163,42 @@ function LandingPage() {
     const searchParams = new URLSearchParams(location.search);
     const outerMenuSlug = searchParams.get('outerMenuSlug');
     const innerMenuSlug = searchParams.get('innerMenuSlug');
-  
-    console.log("Query parameters:", { outerMenuSlug, innerMenuSlug });
     
-    // Ensure menu data is loaded before matching.
     if (outerMenuSlug && mainMenuData.length > 0) {
+  
       const outerMenu = mainMenuData.find(
         (item) =>
-          item.parent === 0 &&
+          item.parent === 0 && 
           generateSlug(item.title.rendered) === outerMenuSlug
       );
-      console.log("Found outer menu:", outerMenu);
-      
+  
+
+  
       if (outerMenu) {
         setOuterActiveMenu(outerMenu.id);
-  
+
         if (innerMenuSlug) {
           const innerMenu = mainMenuData.find(
             (item) =>
               item.parent === outerMenu.id &&
               generateSlug(item.title.rendered) === innerMenuSlug
           );
-          console.log("Found inner menu:", innerMenu);
+  
           if (innerMenu) {
             setInnerActiveMenu(innerMenu.id);
             setCurrentMenu('inner-submenu');
+
           } else {
             setCurrentMenu('submenu');
           }
         } else {
           setCurrentMenu('submenu');
         }
+      } else {
+        console.log("No Matching Outer Menu Found.");
       }
+    } else {
+      console.log(" Menu Data Not Loaded or No Outer Menu Slug.");
     }
   }, [location, mainMenuData]);
   
@@ -204,15 +208,37 @@ function LandingPage() {
     textarea.innerHTML = str;
     return textarea.value;
   };
-  
-  const generateSlug = (title) => {
-    let cleanTitle = decodeHTMLEntities(title).toLowerCase().trim();
-    if (cleanTitle.startsWith("for ")) {
-      cleanTitle = cleanTitle.slice(4).trim();
-    }
-    return cleanTitle.replace(/\s+/g, "-").replace(/[^\w-]+/g, "");
+
+  // Exception Mappings
+  const exceptionMappings = {
+    "web_based_software": "pwa_development",
+    "application_modernization": "app_modernization",
+    "digital_funnel_optimization":"digital_funnel",
+    "ar_vr_&_mr_xr":"xr",
+    "vtuber_creation":"vtuber_builder",
+    "content_creator_management":"content_creator_mgmt",
   };
-  
+
+  const adjustedSlug = (slug) => {
+    return exceptionMappings[slug] || slug;
+};
+
+const generateSlug = (title) => {
+  let cleanTitle = decodeHTMLEntities(title)
+    .toLowerCase()
+    .trim()
+    .replace(/^for\s+/i, "") 
+    .replace(/\/+/g, "")
+    .replace(/&/g, "_&_")
+    .replace(/[-]+/g, "_")
+    .replace(/\s+/g, "_")
+    .replace(/_+/g, "_")
+    .replace(/[^a-z0-9_&]+/g, "");
+
+  cleanTitle = adjustedSlug(cleanTitle);
+
+  return cleanTitle;
+};
 
   const handleBackButton = () => {
     if (currentMenu === 'inner-submenu') {
@@ -245,6 +271,8 @@ function LandingPage() {
       });
     }
   };
+
+  
   
   const toggleOuterMenu = (menu) => {
     if (isMobileView) {
@@ -284,6 +312,9 @@ function LandingPage() {
 
   const outerMenuItems = mainMenuData.filter((item) => item.parent === 0);
   const innerMenuItems = mainMenuData.filter((item) => item.parent !== 0);
+
+  
+
   
 
   if (isMobileView) {
@@ -298,7 +329,7 @@ function LandingPage() {
       }
       return '';
     };
-  
+
     return (
       <div className='LandingPage-Background'>
         <video
@@ -314,7 +345,7 @@ function LandingPage() {
             <h2>Strategic Solutions for <br />Brands + Creators</h2>
           </div>
         </div>
-  
+        
         <div className="LandingPage-Menu-Wrapper" ref={menuWrapperRef}>
           <div className="LandingPage-Header">
             <div className="LandingPage-mark" ref={markRef}></div>
@@ -355,66 +386,170 @@ function LandingPage() {
   
             {/* Render submenu only after main animation is complete */}
             {mainAnimationComplete && currentMenu === 'submenu' && (
-              <div className="submenu" ref={subMenuRef}>
-                <ul>
-                  {innerMenuItems
-                    .filter((item) => item.parent === outerActiveMenu)
-                    .map((item) => (
-                      <li key={item.id} onClick={() => toggleInnerMenu(item.id)}>
-                        <a>
-                          {parse(item.title.rendered)}
-                          <img
-                            src={
-                              innerMenuItems.some((inner) => inner.parent === item.id)
-                                ? '/clubsoda/assets/left.svg'
-                                : '/clubsoda/assets/open.svg'
-                            }
-                            alt="Submenu Icon"
-                            className="menu-arrow"
-                          />
-                        </a>
+            <div className="submenu" ref={subMenuRef}>
+              <ul>
+                {innerMenuItems
+                  .filter((item) => item.parent === outerActiveMenu)
+                  .map((item) => {
+                    const serviceSlug = generateSlug(item.title.rendered);
+                    const hasSubmenu = innerMenuItems.some((inner) => inner.parent === item.id);
+                    const serviceKey = `services_section_${serviceSlug.replace(/-/g, "_")}`;
+                    const serviceExists = servicesData && servicesData[serviceKey];
+                    
+                    return (
+                      <li 
+                        key={item.id} 
+                        onClick={() => {
+                          if (hasSubmenu) {
+                            toggleInnerMenu(item.id);
+                          }
+                        }}
+                      >
+                        {hasSubmenu ? (
+                          <a>
+                            {parse(item.title.rendered)}
+                            <img
+                              src="/clubsoda/assets/left.svg"
+                              alt="Submenu Icon"
+                              className="menu-arrow"
+                            />
+                          </a>
+                        ) : serviceExists ? (
+                          <Link to={`/services/${serviceSlug}`}>
+                            {parse(item.title.rendered)}
+                            <img
+                              src="/clubsoda/assets/open.svg"
+                              alt="External Link Icon"
+                              className="menu-arrow"
+                            />
+                          </Link>
+                        ) : (
+                          <Link to={`/coming-soon`}>
+                            {parse(item.title.rendered)}
+                            <img
+                              src="/clubsoda/assets/open.svg"
+                              alt="External Link Icon"
+                              className="menu-arrow"
+                            />
+                          </Link>
+                        )}
                       </li>
-                    ))}
-                </ul>
-              </div>
-            )}
-            {mainAnimationComplete && currentMenu === "inner-submenu" && (
-              <div className="submenu-inside" ref={subMenuInsideRef}>
-                <ul>
-                    {innerMenuItems
-                        .filter((item) => item.parent === innerActiveMenu)
-                        .map((item) => {
-                          const serviceSlug = generateSlug(item.title.rendered);
-                          const serviceKey = `services_section_${serviceSlug.replace(/-/g, "_")}`;
-                          const serviceExists = servicesData && servicesData[serviceKey];
+                    );
+                  })}
+              </ul>
+            </div>
+          )}
 
-                          return (
-                            <li key={item.id}>
-                              {serviceExists ? (
-                                <Link to={`/services/${serviceSlug}`}>
-                                  {parse(item.title.rendered)}
-                                  <img
-                                    src="/clubsoda/assets/open.svg"
-                                    alt="External Link Icon"
-                                    className="menu-arrow"
-                                  />
-                                </Link>
-                              ) : (
-                                <a>
-                                {parse(item.title.rendered)}
-                                <img
-                                    src="/clubsoda/assets/open.svg"
-                                    alt="External Link Icon"
-                                    className="menu-arrow"
-                                  />
-                                </a> 
-                              )}
-                            </li>
-                          );
-                        })}
-                    </ul>
-                  </div>
-                )}
+          {innerActiveMenu && mainAnimationComplete && (
+            <div className="submenu-inside" ref={subMenuInsideRef}>
+              <ul>
+                {innerMenuItems
+                  .filter((item) => item.parent === innerActiveMenu)
+                  .map((item) => {
+                    const serviceSlug = generateSlug(item.title.rendered);
+                    const specialRedirectServices = ["specialist", "agency"];
+                    const serviceKey = `services_section_${serviceSlug.replace(/-/g, "_")}`;
+                    const serviceExists = servicesData && servicesData[serviceKey]; 
+                    const hasSubmenu = innerMenuItems.some((inner) => inner.parent === item.id);
+
+                    if (specialRedirectServices.includes(serviceSlug)) {
+                      return (
+                        <li key={item.id}>
+                          <Link to="/recruit">
+                            {parse(item.title.rendered)}
+                            <img
+                              src="/clubsoda/assets/open.svg"
+                              alt="External Link Icon"
+                              className="menu-arrow"
+                            />
+                          </Link>
+                        </li>
+                      );
+                    }
+
+                    const specialCases = {
+                      tech_consulting: "digital",
+                      multimedia_consulting: "multimedia",
+                      creative_consulting: "creative",
+                    };
+
+                    if (specialCases[serviceSlug]) {
+                      return (
+                        <li key={item.id}>
+                          <a
+                            href="#"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              const outerMenuSlug = specialCases[serviceSlug];
+
+                              const outerMenu = mainMenuData.find(
+                                (menu) => generateSlug(menu.title.rendered) === outerMenuSlug
+                              );
+
+                              if (outerMenu) {
+                                setOuterActiveMenu(outerMenu.id);
+                                const innerMenu = mainMenuData.find(
+                                  (submenu) => submenu.parent === outerMenu.id && generateSlug(submenu.title.rendered) === serviceSlug
+                                );
+
+                                if (innerMenu) {
+                                  setInnerActiveMenu(innerMenu.id);
+                                  setCurrentMenu("inner-submenu");
+                                } else {
+                                  console.warn(`${serviceSlug} Inner Menu Not Found!`);
+                                }
+                              } else {
+                                console.warn(`${outerMenuSlug} Outer Menu Not Found!`);
+                              }
+                            }}
+                          >
+                            {parse(item.title.rendered)}
+                            <img
+                              src="/clubsoda/assets/open.svg"
+                              alt="External Link Icon"
+                              className="menu-arrow"
+                            />
+                          </a>
+                        </li>
+                      );
+                    }
+
+                    return (
+                      <li
+                        key={item.id}
+                        className={`menu-item ${innerActiveMenu === item.id ? 'submenu-active' : ''}`}
+                        onClick={() => {
+                          if (hasSubmenu) {
+                            toggleInnerMenu(item.id);
+                          }
+                        }}
+                      >
+                        {hasSubmenu ? (
+                          <a>
+                            {parse(item.title.rendered)}
+                            <img
+                              src="/clubsoda/assets/left.svg"
+                              alt="Submenu Icon"
+                              className="menu-arrow"
+                            />
+                          </a>
+                        ) : (
+                          <Link to={serviceExists ? `/services/${serviceSlug}` : "/coming-soon"}>
+                            {parse(item.title.rendered)}
+                            <img
+                              src="/clubsoda/assets/open.svg"
+                              alt="External Link Icon"
+                              className="menu-arrow"
+                            />
+                          </Link>
+                        )}
+                      </li>
+                    );
+                  })}
+              </ul>
+            </div>
+          )}
+
           </div>
         </div>
       </div>
@@ -480,44 +615,126 @@ function LandingPage() {
               <ul>
                 {innerMenuItems
                   .filter((item) => item.parent === outerActiveMenu)
-                  .map((item) => (
-                    <li
-                      key={item.id}
-                      className={`menu-item ${innerActiveMenu === item.id ? 'submenu-active' : ''}`}
-                      onClick={() => toggleInnerMenu(item.id)}
-                    >
-                      <a>
-                        {parse(item.title.rendered)}
-                        <img
-                          src={
-                            innerMenuItems.some((inner) => inner.parent === item.id)
-                              ? '/clubsoda/assets/left.svg'
-                              : '/clubsoda/assets/open.svg'
+                  .map((item) => {
+                    const serviceSlug = generateSlug(item.title.rendered);
+                    const hasSubmenu = innerMenuItems.some((inner) => inner.parent === item.id);
+                    const serviceKey = `services_section_${serviceSlug.replace(/-/g, "_")}`;
+                    const serviceExists = servicesData && servicesData[serviceKey]; 
+
+
+                    return (
+                      <li
+                        key={item.id}
+                        className={`menu-item ${innerActiveMenu === item.id ? 'submenu-active' : ''}`}
+                        onClick={() => {
+                          if (hasSubmenu) {
+                            toggleInnerMenu(item.id);
                           }
-                          alt="Submenu Icon"
-                          className="menu-arrow"
-                        />
-                      </a>
-                    </li>
-                  ))}
+                        }}
+                      >
+                        {hasSubmenu ? (
+                          <a>
+                            {parse(item.title.rendered)}
+                            <img
+                              src='/clubsoda/assets/left.svg'
+                              alt="Submenu Icon"
+                              className="menu-arrow"
+                            />
+                          </a>
+                        ) : (
+                          <Link to={serviceExists ? `/services/${serviceSlug}` : "/coming-soon"}>
+                            {parse(item.title.rendered)}
+                            <img
+                              src='/clubsoda/assets/open.svg'
+                              alt="External Link Icon"
+                              className="menu-arrow"
+                            />
+                          </Link>
+                        )}
+                      </li>
+                    );
+                  })}
               </ul>
             </div>
           )}
-          {/* Render inner submenu only if main animation is complete */}
-          {innerActiveMenu && mainAnimationComplete && (
-          <div className="submenu-inside" ref={subMenuInsideRef}>
-            <ul>
-              {innerMenuItems
-                .filter((item) => item.parent === innerActiveMenu)
-                .map((item) => {
-                  const serviceSlug = generateSlug(item.title.rendered);
-                  const serviceKey = `services_section_${serviceSlug.replace(/-/g, "_")}`;
-                  const serviceExists = servicesData && servicesData[serviceKey];
 
-                  return (
-                    <li key={item.id}>
-                      {serviceExists ? (
-                        <Link to={`/services/${serviceSlug}`}>
+        {/* Render inner submenu only if main animation is complete */}
+          {innerActiveMenu && mainAnimationComplete && (
+            <div className="submenu-inside" ref={subMenuInsideRef}>
+              <ul>
+                {innerMenuItems
+                  .filter((item) => item.parent === innerActiveMenu)
+                  .map((item) => {
+                    const serviceSlug = generateSlug(item.title.rendered);
+                    const specialRedirectServices = ["specialist", "agency"];
+                    const serviceKey = `services_section_${serviceSlug.replace(/-/g, "_")}`;
+                    const serviceExists = servicesData && servicesData[serviceKey];
+
+                    if (specialRedirectServices.includes(serviceSlug)) {
+                      return (
+                        <li key={item.id}>
+                          <Link to="/recruit">
+                            {parse(item.title.rendered)}
+                            <img
+                              src="/clubsoda/assets/open.svg"
+                              alt="External Link Icon"
+                              className="menu-arrow"
+                            />
+                          </Link>
+                        </li>
+                      );
+                    }
+
+                    // 🚨 Special Cases: Set outer & inner menus
+                    const specialCases = {
+                      tech_consulting: "digital",
+                      multimedia_consulting: "multimedia",
+                      creative_consulting: "creative",
+                    };
+
+                    if (specialCases[serviceSlug]) {
+                      return (
+                        <li key={item.id}>
+                          <a
+                            href="#"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              const outerMenuSlug = specialCases[serviceSlug];
+                              const outerMenu = mainMenuData.find(
+                                (menu) => generateSlug(menu.title.rendered) === outerMenuSlug
+                              );
+
+                              if (outerMenu) {
+                                setOuterActiveMenu(outerMenu.id);
+                                const innerMenu = mainMenuData.find(
+                                  (submenu) => submenu.parent === outerMenu.id && generateSlug(submenu.title.rendered) === serviceSlug
+                                );
+
+                                if (innerMenu) {
+                                  setInnerActiveMenu(innerMenu.id);
+                                  setCurrentMenu("inner-submenu");
+                                } else {
+                                  console.warn(`${serviceSlug} Inner Menu Not Found!`);
+                                }
+                              } else {
+                                console.log(` ${outerMenuSlug} Outer Menu Not Found!`);
+                              }
+                            }}
+                          >
+                            {parse(item.title.rendered)}
+                            <img
+                              src="/clubsoda/assets/open.svg"
+                              alt="External Link Icon"
+                              className="menu-arrow"
+                            />
+                          </a>
+                        </li>
+                      );
+                    }
+
+                    return (
+                      <li key={item.id}>
+                        <Link to={serviceExists ? `/services/${serviceSlug}` : "/coming-soon"}>
                           {parse(item.title.rendered)}
                           <img
                             src="/clubsoda/assets/open.svg"
@@ -525,23 +742,12 @@ function LandingPage() {
                             className="menu-arrow"
                           />
                         </Link>
-                      ) : (
-                        <a href='#'>
-                          {parse(item.title.rendered)}
-                          <img
-                            src="/clubsoda/assets/open.svg"
-                            alt="External Link Icon"
-                            className="menu-arrow"
-                          />
-                        </a> 
-                      )}
-                    </li>
-                  );
-                })}
-            </ul>
-          </div>
-        )}
-
+                      </li>
+                    );
+                  })}
+              </ul>
+            </div>
+          )}
         </div>
       </div>
     </div>
