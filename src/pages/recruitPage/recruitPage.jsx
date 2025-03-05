@@ -66,11 +66,13 @@ function RecruitPage() {
 
         <div className={`recruit-main-content nav-open-content ${menuOpen ? "hidden" : ""}`}>
           <h1 className="main-heading">{parse(acf.recruit_section_1.section_1_title)}</h1>
-          <Link to={"/recruit/form"}>
-            <Button text='Get Started' color='#D03820'/>
-          </Link>
-          <p className="recruit-content-line1">{parse(acf.recruit_section_1.section_1_message)}</p>
-          <p className="recruit-content-line2">{parse(acf.recruit_section_1.section_1_message_2)}</p>
+          <div className='recruit-button-text-wrapper'>
+            <Link to={"/recruit/form"}>
+              <Button text='Get Started' color='#D03820'/>
+            </Link>
+            <p className="recruit-content-line1">{parse(acf.recruit_section_1.section_1_message)}</p>
+            <p className="recruit-content-line2">{parse(acf.recruit_section_1.section_1_message_2)}</p>
+          </div>
         </div>
       </div>
     </>

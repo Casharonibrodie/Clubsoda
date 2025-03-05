@@ -1,49 +1,51 @@
 /* Coming Soon Page Styles */
 
 .coming-soon-container {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background-color: #000;
-    color: #fff;
-    overflow: hidden;
-    padding: 32px;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #000;
+  color: #fff;
+  overflow: hidden;
+  padding: 32px;
+}
+
+.coming-soon-background-overlay {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 85vw; 
+  height: 85vh;
+  max-width: 100%;
+  max-height: 80%;
+  background: url('https://doctest.a2hosted.com/clubsoda/wp-backend/wp-content/uploads/2025/01/perception-image.png') no-repeat center center;
+  background-size: contain;
+  opacity: 0.2;
+  z-index: 0;
+}
+
+.coming-soon-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  padding-right: 35px;
+}
+
+.coming-soon-content h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+@media only screen and (max-width: 480px){
+  .coming-soon-content{
+    padding: 0;
   }
-  
-  .coming-soon-background-overlay {
-    position: absolute;
-    width: 85%;
-    height: 85%;
-    background: url('https://doctest.a2hosted.com/clubsoda/wp-backend/wp-content/uploads/2025/01/perception-image.png') no-repeat center center;
-    background-size: contain;
-    opacity: 0.1;
-    z-index: 0;
-  }
-  
-  .coming-soon-content {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .coming-soon-logo-top {
-    width: 150px;
-    margin-bottom: 20px;
-    display: none;
-  }
-  
-  .coming-soon-content h1 {
-    font-size: 2.5rem;
-    margin-bottom: 30px;
-  }
-  
-  .coming-soon-content p {
-    font-size: 1.2rem;
-  }
-  
+}

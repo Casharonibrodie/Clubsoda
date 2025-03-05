@@ -85,7 +85,9 @@ function Footer() {
           <div className="footer-links-section">
             {topLevelMenus.map((menu) => (
               <div key={menu.id}>
-                <h6>{decodeHTMLEntities(menu.title.rendered)}</h6>
+                <Link to={`/?outerMenuSlug=${generateSlug(menu.title.rendered)}`}>
+                  <h6>{decodeHTMLEntities(menu.title.rendered)}</h6>
+                </Link>
                 <ul>
                   {getChildren(secondaryMenuData, menu.id).map((child) => (
                     <li key={child.id}>

@@ -29,15 +29,14 @@
 @media only screen and (max-width: 767px) {
 
     .service-header>.two-column { display: none; }
-    .service-header { padding: 35px 0; background-color: #252525!important; padding-top: 0; }
+    .service-header { padding: 35px 0; background-color: #252525!important; padding-top: 0; margin:3vw;}
     .service-header img {max-width: 100px; }
     .two-column { flex-direction: column; }
     .two-column > div { width: 100%; }
     .services-page-container .mobile-menu-container { background: #252525; transition: color 0.3s ease; }
-    .services-page-container > div,
-    .services-page-container > footer {
-    margin: 3vw;
-}
+    .service-framer-wrapper{padding: 3vw;}
+    .join-club-wrapper{padding: 3vw;}
+    .services-page-container > footer {margin: 3vw;}
 }
 
 @media only screen and (max-width: 480px) {

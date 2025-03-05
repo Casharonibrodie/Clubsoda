@@ -19,7 +19,7 @@ function ContactPageForm() {
       website: '',
       hearAbout: '',
       formData: {
-        category: '',
+        category: [],
         budget: '',
         start:'',
         aboutYourself: '',
@@ -45,14 +45,15 @@ function ContactPageForm() {
     }, [])
 
 
-  const validateStep1 = () => {
-    const errors = {};
-    if (!formDetails.formData.category) {
-      errors.category = 'Please select a category.';
-    }
-    setValidationErrors(errors);
-    return Object.keys(errors).length === 0;
-  };
+    const validateStep1 = () => {
+      const errors = {};
+      if (formDetails.formData.category.length === 0) {
+        errors.category = 'Please select at least one category.';
+      }
+      setValidationErrors(errors);
+      return Object.keys(errors).length === 0;
+    };
+    
 
   const validateStep2 = () => {
     const errors = {};
@@ -166,6 +167,20 @@ function ContactPageForm() {
       console.error('Error submitting form:', error);
     }
   };
+
+  const handleCategorySelection = (option) => {
+    setFormData((prev) => {
+      const updatedCategory = prev.formData.category.includes(option)
+        ? prev.formData.category.filter((item) => item !== option) // Remove if already selected
+        : [...prev.formData.category, option]; // Add if not selected
+  
+      return {
+        ...prev,
+        formData: { ...prev.formData, category: updatedCategory },
+      };
+    });
+  };
+  
   
   
   if (loading) {
@@ -208,28 +223,16 @@ const acf = data.acf;
     <div className="contact-form-choice">
       <h3>{parse(acf.contact_form_step_1.contact_form_step_1_question)}</h3>
       <div className="contact-form-choices contact-form-step-1">
-          {acf.contact_form_step_1.contact_form_step_1_options.map(
-            (option) => (
+            {acf.contact_form_step_1.contact_form_step_1_options.map((option) => (
               <button
                 key={option.option_title}
-                onClick={() =>
-                  setFormData((prev) => ({
-                    ...prev,
-                    formData: { ...prev.formData, category: option.option_title },
-                  }))
-                }
-                className={
-                  formDetails.formData.category === option.option_title
-                    ? 'selected'
-                    : ''
-                }
-                aria-pressed={
-                  formDetails.formData.category === option.option_title
-                }
+                onClick={() => handleCategorySelection(option.option_title)}
+                className={formDetails.formData.category.includes(option.option_title) ? 'selected' : ''}
+                aria-pressed={formDetails.formData.category.includes(option.option_title)}
               >
                 {option.option_title}
               </button>
-        ))}
+      ))}
       </div>
     </div>
     {validationErrors.category && (
@@ -238,7 +241,7 @@ const acf = data.acf;
     <div className="contact-form-next contact-form-next-1">
       <span>
         <Link to='/recruit'>*SEEKING REPRESENTATION or collaboration? VISIT RECRUIT PAGE</Link>
-        <img src="assets/open.svg"></img>
+        <img src="/clubsoda/assets/open.svg"></img>
       </span>
       <button onClick={handleNext}>
         Next →

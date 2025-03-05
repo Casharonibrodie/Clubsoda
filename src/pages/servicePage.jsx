@@ -113,59 +113,62 @@ function ServicePage() {
           setMenuOpen={setMenuOpen} 
           />
         </div>
-
-        <div className="service-framer padding white">
-          <div className="two-column">
-            <div className="img-section">
-            <img
-                src={acf.services_section_1.services_image}
-                alt={acf.services_section_1.services_section_1_title || "Service Image"}
-              />
-            </div>
-            <div>
-              <h2 className="violet lower">
-                {parse(service[`${formattedServiceSlug}_title`] || "Service")}
-              </h2>
-              <p className="upper spacing">
-                {parse(service[`${formattedServiceSlug}_description`] || "")}
-              </p>
-
-
-            <ul className="list">
-              {service[`${formattedServiceSlug}_features`] &&
-                Object.values(service[`${formattedServiceSlug}_features`]).map((feature, index) =>
-                  feature ? ( // Ensure feature is not empty/null
-                    <li key={index}>{parse(feature)}</li> // Parse to render HTML properly
-                  ) : null
-                )}
-            </ul>
+        <div className="service-framer-wrapper">
+          <div className="service-framer padding white">
+            <div className="two-column">
+              <div className="img-section">
+              <img
+                  src={acf.services_section_1.services_image}
+                  alt={acf.services_section_1.services_section_1_title || "Service Image"}
+                />
+              </div>
+              <div>
+                <h2 className="violet lower">
+                  {parse(service[`${formattedServiceSlug}_title`] || "Service")}
+                </h2>
+                <p className="upper spacing">
+                  {parse(service[`${formattedServiceSlug}_description`] || "")}
+                </p>
 
 
-              <Link className="violet-border-button button left color-icon"
-                to={decodeURIComponent(service.get_in_touch || "/contact")}
-              >
-                Get in touch <i className="fa-solid fa-arrow-right"></i>
-              </Link>
+              <ul className="list">
+                {service[`${formattedServiceSlug}_features`] &&
+                  Object.values(service[`${formattedServiceSlug}_features`]).map((feature, index) =>
+                    feature ? ( 
+                      <li key={index}>{parse(feature)}</li>
+                    ) : null
+                  )}
+              </ul>
+
+
+                <Link className="violet-border-button button left color-icon"
+                  to={specialRedirectServices.includes(serviceSlug) ? "/recruit" :decodeURIComponent(service.get_in_touch || "/contact")}
+                >
+                  Get in touch <i className="fa-solid fa-arrow-right"></i>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
-        <div
-          className="join-club white high-padding"
-          style={{
-            backgroundImage: `url(${acf.services_section_2.section_2_background_image?.url || "/assets/default-bg.jpg"})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-          }}
-        >
-          <div className="content-width">
-            <h2>{parse(acf.services_section_2.services_section_2_title || "")}</h2>
-            <Link className="violet-border-button button" to={specialRedirectServices.includes(serviceSlug) ? "/recruit" : decodeURIComponent(acf.services_section_2.contact_us || "/contact")}>
+        <div className="join-club-wrapper">
+          <div
+            className="join-club white high-padding"
+            style={{
+              backgroundImage: `url(${acf.services_section_2.section_2_background_image?.url || "/assets/default-bg.jpg"})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          >
+            <div className="content-width">
+              <h2>{parse(acf.services_section_2.services_section_2_title || "")}</h2>
+              <Link className="violet-border-button button" to={decodeURIComponent(acf.services_section_2.contact_us || "/contact")}>
 
-              CONTACT US<i className="fa-solid fa-arrow-right"></i>
-            </Link>
-          </div>
-        </div>     
+                CONTACT US<i className="fa-solid fa-arrow-right"></i>
+              </Link>
+            </div>
+          </div>  
+        </div>   
         <Footer />
       </div>
     </>

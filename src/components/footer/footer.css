@@ -2,7 +2,9 @@
 .footer-content { color: #fff; background-color: #000;}
 .footer-links-section { display: flex; flex-wrap: wrap; gap: 30px; justify-content: space-between; }
 .footer-links-section>div { }
-.footer-links-section>div h6 { font-weight: 700; letter-spacing: 0.48px; font-size: 18px; margin-bottom: 40px; }
+.footer-links-section>div a{text-decoration: none;}
+.footer-links-section>div a h6 { font-weight: 700; letter-spacing: 0.48px; font-size: 18px; margin-bottom: 40px; color: #fff}
+.footer-links-section>div a h6:hover{background: linear-gradient(to top, #D446F1, #9A35EB);-webkit-text-fill-color: transparent;  -webkit-background-clip: text;}
 .footer-links-section>div ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 25px; font-size: 13px;  }
 .footer-links-section>div ul a { color: #fff; text-decoration: none; }
 .footer-links-section>div ul a:hover { background: linear-gradient(to top, #D446F1, #9A35EB);-webkit-text-fill-color: transparent;  -webkit-background-clip: text; }

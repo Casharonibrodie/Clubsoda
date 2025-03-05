@@ -240,6 +240,29 @@
     .contact-form-background .contact-nav-form-text { display: none; }
 }
 
+@media only screen and (max-width: 767px) {
+    .contact-main-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contact-main-content h1 {
+        align-self: flex-start; 
+        width: 100%;
+    }
+
+    .contact-button-text-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 50vh; 
+        text-align: center;
+    }
+}
+
+
 @media only screen and (max-width: 599px) { 
     .contact-form-back,
     .contact-form-back-details { margin-bottom: 35px; }

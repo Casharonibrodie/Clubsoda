@@ -63,11 +63,13 @@ function ContactPage() {
         ) : (
           <h1 className="main-heading">{parse(acf.contact_section_1.contact_section_title)}</h1>
         )}
-        <Link to="/contact/form">
-          <Button text="Get Started" color="#084C84" />
-        </Link>
-        <p className="contact-content-line1">{parse(acf.contact_section_1.contact_section_message)}</p>
-        <p className="contact-content-line2">{parse(acf.contact_section_1.contact_section_message_2)}</p>
+        <div className="contact-button-text-wrapper">
+          <Link to="/contact/form">
+            <Button text="Get Started" color="#084C84" />
+          </Link>
+          <p className="contact-content-line1">{parse(acf.contact_section_1.contact_section_message)}</p>
+          <p className="contact-content-line2">{parse(acf.contact_section_1.contact_section_message_2)}</p>
+        </div>
       </div>
     </div>
   );
