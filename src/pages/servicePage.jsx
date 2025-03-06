@@ -1,10 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState,useRef } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger"; 
 import parse from "html-react-parser";
 import Footer from "../components/footer/footer";
 import "../styles/service-page.css";
 import ServiceHeader from "../components/Header/serviceHeader";
+
+ gsap.registerPlugin(ScrollTrigger);
 
 function ServicePage() {
   const { serviceSlug } = useParams(); 
@@ -12,6 +16,8 @@ function ServicePage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const overlayRef = useRef(null)
+ 
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,6 +40,39 @@ function ServicePage() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    window.addEventListener('load', ScrollTrigger.refresh);
+    return () => window.removeEventListener('load', ScrollTrigger.refresh);
+  }, []);
+  
+
+  useEffect(() => {
+    if (!data || !overlayRef.current) return; 
+  
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        overlayRef.current,
+        { clipPath: "circle(0% at 50% 50%)" },
+        {
+          clipPath: "circle(150% at 50% 50%)",
+          duration: 2,
+          scrollTrigger: {
+            trigger: overlayRef.current,
+            start: "top center",
+            end: "bottom top",
+            scrub: 1,
+          },
+          ease: "power2.out",
+        }
+      );
+    });
+    return () => ctx.revert();
+  }, [data]); 
+  
+  
+  
+  
+  
   if (loading) {
     return <div className="loading-spinner"></div>;
   }
@@ -78,7 +117,6 @@ function ServicePage() {
     
       console.log("Possible Matches Found:", possibleMatches);
     
-      // Prioritize exact match before taking first possible match
       const exactMatch = possibleMatches.find((key) => key === formattedServiceSlug);
     
       if (exactMatch) {
@@ -106,12 +144,14 @@ function ServicePage() {
   return (
     <>
       <div className="services-page-container">
-        <div className="service-header padding white">
-          <ServiceHeader 
-          serviceButton={parse(acf.services_section_1.connect_with_us ||'' )}
-          menuOpen={menuOpen}
-          setMenuOpen={setMenuOpen} 
-          />
+        <div className="service-header-wrapper">
+          <div className="service-header padding white">
+            <ServiceHeader 
+            serviceButton={parse(acf.services_section_1.connect_with_us ||'' )}
+            menuOpen={menuOpen}
+            setMenuOpen={setMenuOpen} 
+            />
+          </div>
         </div>
         <div className="service-framer-wrapper">
           <div className="service-framer padding white">
@@ -151,6 +191,7 @@ function ServicePage() {
           </div>
         </div>
         <div className="join-club-wrapper">
+          
           <div
             className="join-club white high-padding"
             style={{
@@ -159,6 +200,7 @@ function ServicePage() {
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
             }}
+            ref={overlayRef}
           >
             <div className="content-width">
               <h2>{parse(acf.services_section_2.services_section_2_title || "")}</h2>
@@ -168,6 +210,7 @@ function ServicePage() {
               </Link>
             </div>
           </div>  
+          <div className="join-club-overlay" ></div>
         </div>   
         <Footer />
       </div>

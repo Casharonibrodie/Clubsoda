@@ -17,6 +17,29 @@
 
 .services-page-container .join-club .button { margin-top: 30px; }
 .service-framer h2 { font-weight: 800; }
+.join-club-wrapper {
+    position: relative;
+}
+
+.join-club {
+    position: relative;
+    z-index: 2;
+    padding: 270px 65px;
+    color: white;
+    text-align: center;
+}
+
+.join-club-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 1; 
+    pointer-events: none;
+}
+
 @media only screen and (max-width: 1199px){
     .service-framer{height: auto;}
 }
@@ -29,7 +52,7 @@
 @media only screen and (max-width: 767px) {
 
     .service-header>.two-column { display: none; }
-    .service-header { padding: 35px 0; background-color: #252525!important; padding-top: 0; margin:3vw;}
+    .service-header {background-color: #000!important; padding:3vw;}
     .service-header img {max-width: 100px; }
     .two-column { flex-direction: column; }
     .two-column > div { width: 100%; }

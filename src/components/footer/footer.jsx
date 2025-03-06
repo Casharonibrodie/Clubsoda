@@ -89,15 +89,26 @@ function Footer() {
                   <h6>{decodeHTMLEntities(menu.title.rendered)}</h6>
                 </Link>
                 <ul>
-                  {getChildren(secondaryMenuData, menu.id).map((child) => (
-                    <li key={child.id}>
-                       <Link 
-                          to={`/?outerMenuSlug=${generateSlug(menu.title.rendered)}&innerMenuSlug=${generateSlug(child.title.rendered)}`}
-                        >
+                  {getChildren(secondaryMenuData, menu.id).map((child) => {
+                    const childSlug = generateSlug(child.title.rendered);
+                    let childLink = `/?outerMenuSlug=${generateSlug(menu.title.rendered)}&innerMenuSlug=${childSlug}`;
+
+                    if (childSlug === "vtuber_creation") {
+                      childLink = "/services/vtuber_builder";
+                    } else if (childSlug === "digital_advertising") {
+                      childLink = "/services/digital_advertising";
+                    } else if (childSlug === "for_brands_coming_soon") {
+                      childLink = "/coming-soon";
+                    }
+
+                    return (
+                      <li key={child.id}>
+                        <Link to={childLink}>
                           {decodeHTMLEntities(child.title.rendered)}
                         </Link>
-                    </li>
-                  ))}
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             ))}
