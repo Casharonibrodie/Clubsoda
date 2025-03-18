@@ -194,14 +194,17 @@ function ServicePage() {
           
           <div
             className="join-club white high-padding"
-            style={{
-              backgroundImage: `url(${acf.services_section_2.section_2_background_image?.url || "/assets/default-bg.jpg"})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-            }}
             ref={overlayRef}
           >
+            <video 
+              src="https://doctest.a2hosted.com/clubsoda/wp-backend/wp-content/uploads/2025/03/Big-circle.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              className="background-video"
+            />
             <div className="content-width">
               <h2>{parse(acf.services_section_2.services_section_2_title || "")}</h2>
               <Link className="violet-border-button button" to={decodeURIComponent(acf.services_section_2.contact_us || "/contact")}>

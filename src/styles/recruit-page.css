@@ -5,8 +5,8 @@
 .recruit-logo { background-size: cover; background-repeat: no-repeat; width: 234px; height: 38.16px; }
 .recruit-nav-text h2 { font-size: 24px; letter-spacing: 0.48px; font-weight: 600; color: #ffffff; }
 .recruit-main-content { display: flex; flex-direction: column; align-items: center;      padding-top: 60px;   }
-.recruit-content-line1 { font-size: 24px; line-height: 34px; letter-spacing: 0.3456px; text-transform: uppercase; color: #ffffff96; font-weight: 400; }
-.recruit-content-line2 { font-size: 15px; line-height: 19.44px; letter-spacing: 0.3456px; text-transform: uppercase; color: #ffffff96; font-weight: 400; }
+.recruit-content-line1 { font-size: 24px; line-height: 34px; letter-spacing: 0.3456px; text-transform: uppercase; color: hsla(0, 0%, 100%, 0.8); font-weight: 400; }
+.recruit-content-line2 { font-size: 15px; line-height: 19.44px; letter-spacing: 0.3456px; text-transform: uppercase; color: rgba(255, 255, 255, 0.8); font-weight: 400; }
 
 
 .recruit-form-background { background-color: #0c0c0c; height: 100%; min-height: 100vh; width: auto; padding: 50px; }
@@ -156,10 +156,8 @@
 .recruit-form-details input:-moz-placeholder { /* Firefox 18- */ color: #ffffff; }
 
 
-.recruit-form-choice>p {
-
-    margin-top: 10px;
-}
+.recruit-form-choice>p {margin-top: 10px;}
+.recruit-button-text-wrapper {display: flex;flex-direction: column;justify-content: center;align-items: center;}
 
 @media only screen and (max-width: 1024px) { 
     .recruit-background { padding: 25px; }
@@ -187,10 +185,6 @@
     }
 
     .recruit-button-text-wrapper {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
         height: 50vh; 
         text-align: center;
     }

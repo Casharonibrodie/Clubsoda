@@ -149,7 +149,7 @@ function Footer() {
               </ul>
             </div>
           </div>
-          <p className="copy-right">© Clubsoda 2024</p>
+          <p className="copy-right">© Clubsoda 2025</p>
         </div>
       </div>
     </footer>

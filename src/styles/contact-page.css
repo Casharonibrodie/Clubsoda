@@ -224,6 +224,8 @@
   .contact-form-next-1 img { width: 13px; margin-left:10px; opacity: 0%; transition: all 0.3s ease;}
   .contact-form-next-1:hover img{ opacity: 100%;}
 
+  .contact-button-text-wrapper{display: flex; flex-direction: column; align-items: center;}
+
   @media only screen and (max-width: 1024px) { 
     .contact-background { padding: 25px; }
     .contact-form-background { padding: 25px; }
