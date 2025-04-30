@@ -14,7 +14,7 @@ function MainHeader({ sectionTitle, menuOpen, setMenuOpen }) {
             const base64credentials = btoa(`${username}:${password}`);
             try {
                 const response = await fetch(
-                    "https://doctest.a2hosted.com/clubsoda/wp-backend/wp-json/wp/v2/menu-items?menus=8&_fields=id,title,url,parent",
+                    "https://clubsoda.io/wp-backend/wp-json/wp/v2/menu-items?menus=8&_fields=id,title,url,parent",
                     {
                         headers: {
                             Authorization: `Basic ${base64credentials}`,
@@ -67,7 +67,7 @@ function MainHeader({ sectionTitle, menuOpen, setMenuOpen }) {
                     <div
                         className="recruit-logo"
                         style={{
-                            backgroundImage: `url('https://doctest.a2hosted.com/clubsoda/wp-backend/wp-content/uploads/2025/01/clubsoda_logo.png')`,
+                            backgroundImage: `url('https://clubsoda.io/wp-backend/wp-content/uploads/2025/01/clubsoda_logo.png')`,
                         }}
                     ></div>
                 </Link>

@@ -32,7 +32,7 @@ function ContactPageForm() {
     
 
     useEffect(() => {
-      fetch("https://doctest.a2hosted.com/clubsoda/wp-backend/wp-json/wp/v2/pages/192")
+      fetch("https://clubsoda.io/wp-backend/wp-json/wp/v2/pages/192")
         .then((response) => response.json())
         .then((data) => {
           setData(data);
@@ -157,12 +157,12 @@ function ContactPageForm() {
   
     try {
       const response = await axios.post(
-        'https://doctest.a2hosted.com/clubsoda/wp-backend/wp-json/form-submission/v1/submit/contact',
+        'https://clubsoda.io/wp-backend/wp-json/form-submission/v1/submit/contact',
         formDetails,
         { headers: { 'Content-Type': 'application/json' } }
       );
       console.log('Server Response:', response.data);
-      navigate('/contact');
+      navigate('/submission-confirmation');
     } catch (error) {
       console.error('Error submitting form:', error);
     }
@@ -201,7 +201,7 @@ const acf = data.acf;
           <Link to="/">
             <div className="contact-logo"
             style={{
-              backgroundImage: `url('https://doctest.a2hosted.com/clubsoda/wp-backend/wp-content/uploads/2025/01/clubsoda_logo.png')`,
+              backgroundImage: `url('https://clubsoda.io/wp-backend/wp-content/uploads/2025/01/clubsoda_logo.png')`,
             }}
             ></div>
           </Link>
@@ -241,7 +241,7 @@ const acf = data.acf;
     <div className="contact-form-next contact-form-next-1">
       <span>
         <Link to='/recruit'>*SEEKING REPRESENTATION or collaboration? VISIT RECRUIT PAGE</Link>
-        <img src="/clubsoda/assets/open.svg"></img>
+        <img src="/assets/open.svg"></img>
       </span>
       <button onClick={handleNext}>
         Next →

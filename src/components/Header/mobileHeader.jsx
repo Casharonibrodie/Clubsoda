@@ -16,7 +16,7 @@ function MobileHeader({ menuOpen, setMenuOpen }) {
             const base64credentials = btoa(`${username}:${password}`);
             try {
                 const response = await fetch(
-                    "https://doctest.a2hosted.com/clubsoda/wp-backend/wp-json/wp/v2/menu-items?menus=8&_fields=id,title,url,parent",
+                    "https://clubsoda.io/wp-backend/wp-json/wp/v2/menu-items?menus=8&_fields=id,title,url,parent",
                     {
                         headers: {
                             Authorization: `Basic ${base64credentials}`,
@@ -96,7 +96,7 @@ function MobileHeader({ menuOpen, setMenuOpen }) {
             <Link to="/">
                 <img
                     className="mobile-header-logo"
-                    src="https://doctest.a2hosted.com/clubsoda/wp-backend/wp-content/uploads/2025/01/perception-image.png"
+                    src="https://clubsoda.io/wp-backend/wp-content/uploads/2025/01/perception-image.png"
                     alt="Logo"
                 />
             </Link>
@@ -131,7 +131,7 @@ function MobileHeader({ menuOpen, setMenuOpen }) {
                         <img
                             className="mobile-bottom-logo"
                             ref={bottomLogoRef}
-                            src="https://doctest.a2hosted.com/clubsoda/wp-backend/wp-content/uploads/2025/01/clubsoda-footer-logo.png"
+                            src="https://clubsoda.io/wp-backend/wp-content/uploads/2025/01/clubsoda-footer-logo.png"
                             alt="Footer Logo"
                         />
                     </div>

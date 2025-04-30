@@ -54,19 +54,19 @@ function LandingPage() {
     };
   
     fetchMenuData(
-      'https://doctest.a2hosted.com/clubsoda/wp-backend/wp-json/wp/v2/menu-items?menus=5&_fields=id,title,url,parent',
+      'https://clubsoda.io/wp-backend/wp-json/wp/v2/menu-items?menus=5&_fields=id,title,url,parent',
       setMainMenuData
     );
   
     fetchMenuData(
-      'https://doctest.a2hosted.com/clubsoda/wp-backend/wp-json/wp/v2/menu-items?menus=9&_fields=id,title,url,parent',
+      'https://clubsoda.io/wp-backend/wp-json/wp/v2/menu-items?menus=9&_fields=id,title,url,parent',
       setBottomMenuData
     );
       // Fetch services data to check for valid service sections
       const fetchServicesData = async () => {
         try {
           const response = await fetch(
-            "https://doctest.a2hosted.com/clubsoda/wp-backend/wp-json/wp/v2/pages/77"
+            "https://clubsoda.io/wp-backend/wp-json/wp/v2/pages/77"
           );
           if (!response.ok) throw new Error("Failed to fetch services data");
           const data = await response.json();
@@ -333,11 +333,12 @@ const generateSlug = (title) => {
     return (
       <div className='LandingPage-Background'>
         <video
-          src="https://doctest.a2hosted.com/clubsoda/wp-backend/wp-content/uploads/2025/01/bg.mp4"
+          src="https://clubsoda.io/wp-backend/wp-content/uploads/2025/01/bg.mp4"
           autoPlay
           muted
           loop
           playsInline
+          preload="auto"
         ></video>
         <div className="LandingPage-Wrapper" ref={wrapperRef}>
           <div className="LandingPage-Logo" ref={logoRef}></div>
@@ -409,7 +410,7 @@ const generateSlug = (title) => {
                           <a>
                             {parse(item.title.rendered)}
                             <img
-                              src="/clubsoda/assets/left.svg"
+                              src="/assets/left.svg"
                               alt="Submenu Icon"
                               className="menu-arrow"
                             />
@@ -418,7 +419,7 @@ const generateSlug = (title) => {
                           <Link to={`/services/${serviceSlug}`}>
                             {parse(item.title.rendered)}
                             <img
-                              src="/clubsoda/assets/open.svg"
+                              src="/assets/open.svg"
                               alt="External Link Icon"
                               className="menu-arrow"
                             />
@@ -427,7 +428,7 @@ const generateSlug = (title) => {
                           <Link to={`/coming-soon`}>
                             {parse(item.title.rendered)}
                             <img
-                              src="/clubsoda/assets/open.svg"
+                              src="/assets/open.svg"
                               alt="External Link Icon"
                               className="menu-arrow"
                             />
@@ -458,7 +459,7 @@ const generateSlug = (title) => {
                           <Link to="/recruit">
                             {parse(item.title.rendered)}
                             <img
-                              src="/clubsoda/assets/open.svg"
+                              src="/assets/open.svg"
                               alt="External Link Icon"
                               className="menu-arrow"
                             />
@@ -505,7 +506,7 @@ const generateSlug = (title) => {
                           >
                             {parse(item.title.rendered)}
                             <img
-                              src="/clubsoda/assets/open.svg"
+                              src="/assets/open.svg"
                               alt="External Link Icon"
                               className="menu-arrow"
                             />
@@ -528,7 +529,7 @@ const generateSlug = (title) => {
                           <a>
                             {parse(item.title.rendered)}
                             <img
-                              src="/clubsoda/assets/left.svg"
+                              src="/assets/left.svg"
                               alt="Submenu Icon"
                               className="menu-arrow"
                             />
@@ -537,7 +538,7 @@ const generateSlug = (title) => {
                           <Link to={serviceExists ? `/services/${serviceSlug}` : "/coming-soon"}>
                             {parse(item.title.rendered)}
                             <img
-                              src="/clubsoda/assets/open.svg"
+                              src="/assets/open.svg"
                               alt="External Link Icon"
                               className="menu-arrow"
                             />
@@ -560,11 +561,12 @@ const generateSlug = (title) => {
   return (
     <div className='LandingPage-Background'>
       <video
-        src="https://doctest.a2hosted.com/clubsoda/wp-backend/wp-content/uploads/2025/01/bg.mp4"
+        src="https://clubsoda.io/wp-backend/wp-content/uploads/2025/01/bg.mp4"
         autoPlay
         muted
         loop
         playsInline
+        preload="auto"
       ></video>
   
       <div className="LandingPage-Wrapper" ref={wrapperRef}>
@@ -636,7 +638,7 @@ const generateSlug = (title) => {
                           <a>
                             {parse(item.title.rendered)}
                             <img
-                              src='/clubsoda/assets/left.svg'
+                              src='/assets/left.svg'
                               alt="Submenu Icon"
                               className="menu-arrow"
                             />
@@ -645,7 +647,7 @@ const generateSlug = (title) => {
                           <Link to={serviceExists ? `/services/${serviceSlug}` : "/coming-soon"}>
                             {parse(item.title.rendered)}
                             <img
-                              src='/clubsoda/assets/open.svg'
+                              src='/assets/open.svg'
                               alt="External Link Icon"
                               className="menu-arrow"
                             />
@@ -676,7 +678,7 @@ const generateSlug = (title) => {
                           <Link to="/recruit">
                             {parse(item.title.rendered)}
                             <img
-                              src="/clubsoda/assets/open.svg"
+                              src="/assets/open.svg"
                               alt="External Link Icon"
                               className="menu-arrow"
                             />
@@ -723,7 +725,7 @@ const generateSlug = (title) => {
                           >
                             {parse(item.title.rendered)}
                             <img
-                              src="/clubsoda/assets/open.svg"
+                              src="/assets/open.svg"
                               alt="External Link Icon"
                               className="menu-arrow"
                             />
@@ -737,7 +739,7 @@ const generateSlug = (title) => {
                         <Link to={serviceExists ? `/services/${serviceSlug}` : "/coming-soon"}>
                           {parse(item.title.rendered)}
                           <img
-                            src="/clubsoda/assets/open.svg"
+                            src="/assets/open.svg"
                             alt="External Link Icon"
                             className="menu-arrow"
                           />

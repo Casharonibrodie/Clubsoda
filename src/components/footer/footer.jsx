@@ -20,7 +20,7 @@ function Footer() {
       try {
         // Fetch primary menu data
         const primaryResponse = await fetch(
-          "https://doctest.a2hosted.com/clubsoda/wp-backend/wp-json/wp/v2/menu-items?menus=7&_fields=id,title,url,parent",
+          "https://clubsoda.io/wp-backend/wp-json/wp/v2/menu-items?menus=7&_fields=id,title,url,parent",
           {
             method: 'GET',
             headers: {
@@ -36,7 +36,7 @@ function Footer() {
         }
         // Fetch secondary menu data
         const secondaryResponse = await fetch(
-          "https://doctest.a2hosted.com/clubsoda/wp-backend/wp-json/wp/v2/menu-items?menus=6&_fields=id,title,url,parent",
+          "https://clubsoda.io/wp-backend/wp-json/wp/v2/menu-items?menus=6&_fields=id,title,url,parent",
           {
             method: 'GET',
             headers: {
@@ -118,7 +118,7 @@ function Footer() {
       <div className="footer-logo">
         <div className="container">
           <img
-            src="https://doctest.a2hosted.com/clubsoda/wp-backend/wp-content/uploads/2025/01/clubsoda-footer-logo.png"
+            src="https://clubsoda.io/wp-backend/wp-content/uploads/2025/01/clubsoda-footer-logo.png"
             alt="Clubsoda Logo"
           />
         </div>
@@ -138,7 +138,7 @@ function Footer() {
                 ))}
               </ul>
             </div>
-            <div>
+            <div className="hiddenForNow">
               <h6>Legal Bits</h6>
               <ul>
                 {getChildren(menuData, menuData.find((item) => item.title.rendered === "LEGAL BITS")?.id || 0).map((item) => (

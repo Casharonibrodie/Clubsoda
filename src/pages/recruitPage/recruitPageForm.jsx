@@ -29,7 +29,7 @@ function RecruitPageForm() {
 
 
     useEffect(() => {
-      fetch("https://doctest.a2hosted.com/clubsoda/wp-backend/wp-json/wp/v2/pages/173")
+      fetch("https://clubsoda.io/wp-backend/wp-json/wp/v2/pages/173")
         .then((response) => response.json())
         .then((data) => {
           setData(data);
@@ -121,7 +121,7 @@ function RecruitPageForm() {
       if (!validateStep5()) return;
   
       const endpoint =
-        'https://doctest.a2hosted.com/clubsoda/wp-backend/wp-json/form-submission/v1/submit/recruit';
+        'https://clubsoda.io/wp-backend/wp-json/form-submission/v1/submit/recruit';
   
       try {
         const response = await axios.post(endpoint, formDetails, {
@@ -132,7 +132,7 @@ function RecruitPageForm() {
   
         console.log('Server Response:', response.data);
   
-        navigate('/recruit');
+        navigate('/submission-confirmation');
       } catch (error) {
         console.error('Error submitting form:', error);
       }
@@ -172,7 +172,7 @@ function RecruitPageForm() {
           <Link to="/">
            <div className="recruit-logo"
               style={{
-                backgroundImage: `url('https://doctest.a2hosted.com/clubsoda/wp-backend/wp-content/uploads/2025/01/clubsoda_logo.png')`,
+                backgroundImage: `url('https://clubsoda.io/wp-backend/wp-content/uploads/2025/01/clubsoda_logo.png')`,
               }}
               ></div>
           </Link>
@@ -189,7 +189,7 @@ function RecruitPageForm() {
 {currentStep === 1 && (
   <>
     <div className="recruit-form-back">
-      <Link to="/recruit"><img src='/clubsoda/assets/back.svg'></img> Back</Link>
+      <Link to="/recruit"><img src='/assets/back.svg'></img> Back</Link>
     </div>
     <div className="recruit-form-choice">
       <h3>{parse(acf.recruit_form_step_1.recruit_form_step_1_question)}</h3>
@@ -234,7 +234,7 @@ function RecruitPageForm() {
 {currentStep === 2 && formDetails.formData.category !== 'General Inquiry' && (
   <>
     <div className="recruit-form-back">
-      <button onClick={handleBack}><img src='/clubsoda/assets/back.svg'></img> Back</button>
+      <button onClick={handleBack}><img src='/assets/back.svg'></img> Back</button>
     </div>
     <div className="recruit-form-choice">
       <h3>
@@ -286,7 +286,7 @@ function RecruitPageForm() {
 {currentStep === 3 && (
   <>
     <div className="recruit-form-back">
-     <button onClick={handleBack}><img src='/clubsoda/assets/back.svg'></img> Back</button>
+     <button onClick={handleBack}><img src='/assets/back.svg'></img> Back</button>
     </div>
     <div className="recruit-form-choice">
       <h3 style={{ marginBottom: 0 }}>{parse(acf.recruit_form_step_3.step_3_heading)}</h3>
@@ -320,7 +320,7 @@ function RecruitPageForm() {
 {currentStep === 4 && (
   <>
     <div className="recruit-form-back">
-     <button onClick={handleBack}><img src='/clubsoda/assets/back.svg'></img> Back</button>
+     <button onClick={handleBack}><img src='/assets/back.svg'></img> Back</button>
     </div>
     <div className="recruit-form-choice">
       <h3 style={{ marginBottom: 0 }}>{parse(acf.recruit_form_step_4.step_4_heading)}</h3>
@@ -352,7 +352,7 @@ function RecruitPageForm() {
 {currentStep === 5 && (
   <>
     <div className="recruit-form-back-details">
-     <button onClick={handleBack}><img src='/clubsoda/assets/back.svg'></img> Back</button>
+     <button onClick={handleBack}><img src='/assets/back.svg'></img> Back</button>
     </div>
     <div className="recruit-form-details">
       <h3>{parse(acf.recruit_form_step_5.step_5_heading)}</h3>

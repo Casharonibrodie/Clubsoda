@@ -8,7 +8,7 @@ function ServiceHeader({serviceButton, menuOpen, setMenuOpen }){
         <div className="two-column">
             <div className="img-section">
               <Link to="/">
-                <img src="https://doctest.a2hosted.com/clubsoda/wp-backend/wp-content/uploads/2025/01/perception-image.png" alt="Logo" />
+                <img src="https://clubsoda.io/wp-backend/wp-content/uploads/2025/01/perception-image.png" alt="Logo" />
               </Link>
             </div>
             <div>

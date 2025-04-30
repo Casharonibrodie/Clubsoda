@@ -59,11 +59,12 @@ a {
   width: max-content;
   margin: 50px auto 0;
   z-index: 0;
+  text-decoration: none;
 }
 
 .white-button::before {
   content: '';
-  background-image: url(https://doctest.a2hosted.com/clubsoda/wp-backend/wp-content/uploads/2025/01/eye.webp);
+  background-image: url(https://clubsoda.io/wp-backend/wp-content/uploads/2025/01/eye.webp);
   position: absolute;
   top: -41%;
   left: 50%;
@@ -292,7 +293,7 @@ a {
 .mobile-header li { list-style-type: none; position: relative; }
 
 .inner-nav-links a::before,
-.mobile-header a::before  { content: ''; position: absolute; top: 50%; left: 0; transform: translateY(-50%); width: 14.4px;  height: 14.4px; background-image: url('/clubsoda/assets/left.svg'); background-size: contain; background-repeat: no-repeat; display: none; }
+.mobile-header a::before  { content: ''; position: absolute; top: 50%; left: 0; transform: translateY(-50%); width: 14.4px;  height: 14.4px; background-image: url('/assets/left.svg'); background-size: contain; background-repeat: no-repeat; display: none; }
 
 .inner-nav-links a:hover::before,
 .mobile-header a:hover::before { display: block; color: #ffffff; }
@@ -465,3 +466,4 @@ a {
 
   
 }
+.hiddenForNow{display: none;}

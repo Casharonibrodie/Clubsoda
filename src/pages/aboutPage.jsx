@@ -1,5 +1,6 @@
 
 import { useEffect, useState} from "react";
+import { Link} from 'react-router-dom';
 import parse from "html-react-parser";
 import Footer from "../components/footer/footer";
 import '../styles/about-page.css';
@@ -12,7 +13,7 @@ function AboutPage() {
 
 
   useEffect(() => {
-    fetch("https://doctest.a2hosted.com/clubsoda/wp-backend/wp-json/wp/v2/pages/16")
+    fetch("https://clubsoda.io/wp-backend/wp-json/wp/v2/pages/16")
       .then((response) => response.json())
       .then((data) => {
         setData(data);
@@ -41,11 +42,12 @@ function AboutPage() {
         {/* About Section 1 */}
         <div className="about-hero-section">
             <video
-            src="https://doctest.a2hosted.com/clubsoda/wp-backend/wp-content/uploads/2025/02/Emitter.mp4"
+            src="https://clubsoda.io/wp-backend/wp-content/uploads/2025/02/Emitter.mp4"
             autoPlay
             muted
             loop
             playsInline
+            preload="auto"
             ></video>
             <MainHeader 
             sectionTitle={parse(acf.about_section_banner.section_banner_text)}
@@ -76,7 +78,7 @@ function AboutPage() {
         {/* About Section 3 */}
         <div className="about-section-3">
             <div className="about-section-3-content">
-           <h2> At<img src="https://doctest.a2hosted.com/clubsoda/wp-backend/wp-content/uploads/2025/01/clubsoda-footer-logo.png"></img> , we&apos;re more than an agency — we&apos;re a <span className="grey-color-text">collective network</span> of creatives and critical thinkers, Bridging brands and creative minds to deliver products that turn heads. Whether you’re an individual <span className="grey-color-text">creator</span>, a <span className="grey-color-text">startup</span> with big ideas, or an established <span className="grey-color-text">brand</span> looking for a fresh spark, we&apos;ll make your brand pop like bubble wrap — but way more satisfying.</h2>
+           <h2> At<img src="https://clubsoda.io/wp-backend/wp-content/uploads/2025/01/clubsoda-footer-logo.png"></img> , we&apos;re more than an agency — we&apos;re a <span className="grey-color-text">collective network</span> of creatives and critical thinkers, Bridging brands and creative minds to deliver products that turn heads. Whether you’re an individual <span className="grey-color-text">creator</span>, a <span className="grey-color-text">startup</span> with big ideas, or an established <span className="grey-color-text">brand</span> looking for a fresh spark, we&apos;ll make your brand pop like bubble wrap — but way more satisfying.</h2>
             </div>
         </div>
 
@@ -172,8 +174,7 @@ function AboutPage() {
         <div className="white about-contact high-padding">   
             <div className="content-width">
                 <p>{parse(acf.about_section_7.section_7_title)}</p>
-                <a className="white-button" href={acf.about_section_7.contact_us}>CONTACT US</a>
-                
+                <Link className="white-button" to="/contact" >CONTACT US</Link>
             </div>
         </div> 
         </div>

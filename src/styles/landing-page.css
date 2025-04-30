@@ -39,7 +39,7 @@
 }
 
 .LandingPage-Logo {
-  background-image: url(https://doctest.a2hosted.com/clubsoda/wp-backend/wp-content/uploads/2025/01/clubsoda_logo.png);
+  background-image: url(https://clubsoda.io/wp-backend/wp-content/uploads/2025/01/clubsoda_logo.png);
   background-size: contain;
   background-repeat: no-repeat;
   height: 100px;
@@ -69,7 +69,7 @@
 }
 
 .LandingPage-mark {
-  background-image: url('https://doctest.a2hosted.com/clubsoda/wp-backend/wp-content/uploads/2025/01/perception-image.png');
+  background-image: url('https://clubsoda.io/wp-backend/wp-content/uploads/2025/01/perception-image.png');
   background-size: contain;
   background-position: right;
   background-repeat: no-repeat;

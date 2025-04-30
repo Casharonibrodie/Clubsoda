@@ -30,7 +30,7 @@
     transform: translateY(-50%);
     width: 20px;
     height: 20px;
-    background-image: url('../assets/icons/left.svg'); /* Replace with your image path */
+    background-image: url('../assets/icons/left.svg');
     background-size: contain;
     background-repeat: no-repeat;
     display: none;

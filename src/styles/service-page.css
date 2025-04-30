@@ -12,6 +12,10 @@
 .service-header img {     max-width: 50px; }
 .service-header a { margin-top: 0;}
 .service-framer {  margin-top: 0 !important; height: 100vh;}
+.two-column .img-section video {
+    width: 120%;
+}
+
 
 .services-page-container .join-club { padding: 270px 65px; }
 
@@ -60,10 +64,11 @@
     .service-framer-wrapper{padding: 3vw;}
     .join-club-wrapper{padding: 3vw;}
     .services-page-container > footer {margin: 3vw;}
+    .two-column .img-section video {width: 100%; transform:translateX(-3%)};
 }
 
 @media only screen and (max-width: 480px) {
-.services-page-container .join-club { background-image: url(https://doctest.a2hosted.com/clubsoda/wp-backend/wp-content/uploads/2025/01/clouds-mobile.webp) !important; padding: 85px 65px; }
+.services-page-container .join-club { background-image: url(https://clubsoda.io/wp-backend/wp-content/uploads/2025/01/clouds-mobile.webp) !important; padding: 85px 65px; }
 }
 
 

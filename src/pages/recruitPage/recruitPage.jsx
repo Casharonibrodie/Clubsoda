@@ -13,7 +13,7 @@ function RecruitPage() {
   const navLinksRef = useRef([]);
 
   useEffect(() => {
-    fetch("https://doctest.a2hosted.com/clubsoda/wp-backend/wp-json/wp/v2/pages/173")
+    fetch("https://clubsoda.io/wp-backend/wp-json/wp/v2/pages/173")
       .then((response) => response.json())
       .then((data) => {
         setData(data);
@@ -52,11 +52,12 @@ function RecruitPage() {
     <>
       <div className="recruit-background">
       <video
-        src="https://doctest.a2hosted.com/clubsoda/wp-backend/wp-content/uploads/2025/01/red-balls.mp4"
+        src="https://clubsoda.io/wp-backend/wp-content/uploads/2025/01/red-balls.mp4"
         autoPlay
         muted
         loop
         playsInline
+        preload="auto"
       ></video>
         <MainHeader 
         sectionTitle={parse(acf.recruit_header.recruit_banner_text)}            

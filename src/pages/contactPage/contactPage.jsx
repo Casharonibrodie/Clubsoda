@@ -20,7 +20,7 @@ function ContactPage() {
   }, []);
 
   useEffect(() => {
-    fetch("https://doctest.a2hosted.com/clubsoda/wp-backend/wp-json/wp/v2/pages/192")
+    fetch("https://clubsoda.io/wp-backend/wp-json/wp/v2/pages/192")
       .then((response) => response.json())
       .then((data) => {
         setData(data);
@@ -45,10 +45,11 @@ function ContactPage() {
   return (
     <div className="contact-background">
       <video
-        src="https://doctest.a2hosted.com/clubsoda/wp-backend/wp-content/uploads/2025/02/Gradientwavyballs.mp4"
+        src="https://clubsoda.io/wp-backend/wp-content/uploads/2025/02/Gradientwavyballs.mp4"
         autoPlay
         muted
         loop
+        preload="auto"
         playsInline
       ></video>
       <MainHeader
