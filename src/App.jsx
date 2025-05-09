@@ -1,4 +1,7 @@
-import {HashRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+
 import LandingPage from "./pages/landingPage";
 import AboutPage from "./pages/aboutPage";
 import ServicePage from "./pages/servicePage";
@@ -9,12 +12,20 @@ import ContactPageForm from "./pages/contactPage/contactPageForm";
 import ComingSoon from "./pages/coming-soon";
 import SubmissionConfirmation from "./pages/formSubmission";
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
+  return null;
+}
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/about" element={<AboutPage />} />
@@ -23,8 +34,8 @@ function App() {
         <Route path="/recruit/form" element={<RecruitPageForm />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/contact/form" element={<ContactPageForm />} />
-        <Route path="/coming-soon" element={<ComingSoon/>} />
-        <Route path="/submission-confirmation" element={<SubmissionConfirmation/>} />
+        <Route path="/coming-soon" element={<ComingSoon />} />
+        <Route path="/submission-confirmation" element={<SubmissionConfirmation />} />
       </Routes>
     </Router>
   );

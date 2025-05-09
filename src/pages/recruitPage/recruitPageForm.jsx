@@ -100,21 +100,58 @@ function RecruitPageForm() {
   
     const handleNext = () => {
       let isValid = true;
-      if (currentStep === 1) isValid = validateStep1();
-      if (currentStep === 2) isValid = validateStep2();
-      if (currentStep === 3) isValid = validateStep3();
-      if (currentStep === 4) isValid = validateStep4();
-  
-      if (isValid) {
-        setValidationErrors({});
-        setCurrentStep((prev) => prev + 1);
+    
+      if (currentStep === 1) {
+        isValid = validateStep1();
+        if (isValid) {
+          setValidationErrors({});
+    
+          // If General Inquiry is selected, skip Step 2
+          if (formDetails.formData.category.toLowerCase().trim() === 'general inquiry') {
+            setCurrentStep(3);
+            return;
+          }
+    
+          setCurrentStep(2); // Otherwise, go to Step 2
+        }
+      }
+    
+      else if (currentStep === 2) {
+        isValid = validateStep2();
+        if (isValid) {
+          setValidationErrors({});
+          setCurrentStep(3);
+        }
+      }
+    
+      else if (currentStep === 3) {
+        isValid = validateStep3();
+        if (isValid) {
+          setValidationErrors({});
+          setCurrentStep(4);
+        }
+      }
+    
+      else if (currentStep === 4) {
+        isValid = validateStep4();
+        if (isValid) {
+          setValidationErrors({});
+          setCurrentStep(5);
+        }
       }
     };
+    
   
     const handleBack = () => {
       setValidationErrors({});
-      setCurrentStep((prev) => prev - 1);
+    
+      if (currentStep === 3 && formDetails.formData.category.toLowerCase().trim() === 'general inquiry') {
+        setCurrentStep(1); 
+      } else {
+        setCurrentStep((prev) => prev - 1);
+      }
     };
+    
 
 
     const handleFormSubmit = async () => {
@@ -198,12 +235,18 @@ function RecruitPageForm() {
             (option) => (
               <button
                 key={option.option_title}
-                onClick={() =>
+                onClick={() => {
+                  console.log('Step 1 Selection:', option.option_title); 
+                  const selectedCategory = option.option_title;
                   setFormData((prev) => ({
                     ...prev,
-                    formData: { ...prev.formData, category: option.option_title },
-                  }))
-                }
+                    formData: {
+                      ...prev.formData,
+                      category: selectedCategory,
+                      option: '',
+                    },
+                  }));
+                }}
                 className={
                   formDetails.formData.category === option.option_title
                     ? 'selected'

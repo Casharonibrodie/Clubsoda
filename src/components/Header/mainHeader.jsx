@@ -8,6 +8,8 @@ import { CREDENTIALS } from "../../utils/credentials";
 function MainHeader({ sectionTitle, menuOpen, setMenuOpen }) {
     const [menuItems, setMenuItems] = useState([]);
     const navLinksRef = useRef(null);
+    const animationPlayed = useRef(false);
+    const animationTimeline = useRef(null); 
     useEffect(() => {
         const fetchMenuItems = async () => {
             const { username, password } = CREDENTIALS;
@@ -34,31 +36,36 @@ function MainHeader({ sectionTitle, menuOpen, setMenuOpen }) {
         fetchMenuItems();
     }, []);
 
-        // Animation effect
-        useEffect(() => {
-            let ctx;
-            if (menuItems.length > 0) {
-                ctx = gsap.context(() => {
-                    gsap.set(".inner-nav-links li", {
-                        opacity: 0,
-                        y: 20
-                    });
-    
-                    // Animate in
-                    gsap.to(".inner-nav-links li", {
-                        opacity: 1,
-                        y: 0,
-                        duration: 0.6,
-                        stagger: 0.2,
-                        ease: "power2.out",
-                        delay: 0.3
-                    });
-                }, navLinksRef);
-            }
-    
-            return () => ctx && ctx.revert();
-        }, [menuItems]); // Run when menuItems change
-   
+
+  
+    useEffect(() => {
+      if (menuItems.length > 0 && !animationPlayed.current) {
+        const ctx = gsap.context(() => {
+          gsap.set(".inner-nav-links li", {
+            opacity: 0,
+            y: 20,
+          });
+  
+          animationTimeline.current = gsap.to(".inner-nav-links li", {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            stagger: 0.2,
+            ease: "power2.out",
+            delay: 0.3,
+          });
+        }, navLinksRef);
+  
+        animationPlayed.current = true;
+  
+
+        return () => {
+          if (ctx && animationTimeline.current?.progress() === 1) {
+            ctx.revert(); 
+          }
+        };
+      }
+    }, [menuItems]);
 
     return (
         <div className={`inner-nav-wrapper`}>
