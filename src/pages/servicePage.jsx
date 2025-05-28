@@ -114,12 +114,12 @@ function ServicePage() {
     );
 
     if (exactMatch) {
-      formattedServiceSlug = exactMatch; // Use exact match
+      formattedServiceSlug = exactMatch;
     } else if (possibleMatches.length > 0) {
       formattedServiceSlug =
         possibleMatches.find(
           (key) => key === `services_section_${serviceSlug}`
-        ) || possibleMatches[0]; // Prioritize "services_section_vtuber"
+        ) || possibleMatches[0]; 
     }
 
     service = acf[formattedServiceSlug];
@@ -163,7 +163,7 @@ function ServicePage() {
                   muted
                   loop
                   playsInline
-                  preload="auto"
+                  preload="metadata"
                 ></video>
               </div>
               <div>
@@ -205,7 +205,7 @@ function ServicePage() {
               loop
               muted
               playsInline
-              preload="auto"
+              preload="metadata"
               className="background-video"
             />
             <div className="content-width">

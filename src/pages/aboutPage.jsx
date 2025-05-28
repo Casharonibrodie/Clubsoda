@@ -78,7 +78,7 @@ function AboutPage() {
         {/* About Section 3 */}
         <div className="about-section-3">
             <div className="about-section-3-content">
-           <h2> At<img src="https://clubsoda.io/wp-backend/wp-content/uploads/2025/01/clubsoda-footer-logo.png"></img> , we&apos;re more than an agency — we&apos;re a <span className="grey-color-text">collective network</span> of creatives and critical thinkers, Bridging brands and creative minds to deliver products that turn heads. Whether you’re an individual <span className="grey-color-text">creator</span>, a <span className="grey-color-text">startup</span> with big ideas, or an established <span className="grey-color-text">brand</span> looking for a fresh spark, we&apos;ll make your brand pop like bubble wrap — but way more satisfying.</h2>
+           <h2> At<img src="https://clubsoda.io/wp-backend/wp-content/uploads/2025/01/clubsoda-footer-logo.png" loading="lazy"></img> , we&apos;re more than an agency — we&apos;re a <span className="grey-color-text">collective network</span> of creatives and critical thinkers, Bridging brands and creative minds to deliver products that turn heads. Whether you’re an individual <span className="grey-color-text">creator</span>, a <span className="grey-color-text">startup</span> with big ideas, or an established <span className="grey-color-text">brand</span> looking for a fresh spark, we&apos;ll make your brand pop like bubble wrap — but way more satisfying.</h2>
             </div>
         </div>
 
@@ -91,7 +91,7 @@ function AboutPage() {
             <div className="about-image-right">
                 {acf.about_section_3.section_3_images_1.map((imageUrl, index) => (
                 <div className="about-section-image" key={index}>
-                    <img src={imageUrl} alt={`About Section Image ${index + 1}`} />
+                    <img src={imageUrl} alt={`About Section Image ${index + 1}`} loading="lazy"/>
                 </div>
                 ))}
             </div>
@@ -101,7 +101,7 @@ function AboutPage() {
             <div className="about-image-left">
                 {acf.about_section_3.section_3_images_2.map((imageUrl, index) => (
                 <div className="about-section-image" key={index}>
-                    <img src={imageUrl} alt={`About Section Image ${index + 1}`} />
+                    <img src={imageUrl} alt={`About Section Image ${index + 1}`} loading="lay"/>
                 </div>
                 ))}
             </div>
@@ -111,7 +111,7 @@ function AboutPage() {
             <div className="about-image-right">
                 {acf.about_section_3.section_3_images_3.map((imageUrl, index) => (
                 <div className="about-section-image last-about-section-image" key={index}>
-                    <img src={imageUrl} alt={`About Section Image ${index + 1}`} />
+                    <img src={imageUrl} alt={`About Section Image ${index + 1}`} loading="lazy"/>
                 </div>
                 ))}
             </div>
@@ -142,13 +142,13 @@ function AboutPage() {
             <h2>{parse(acf.about_section_5.section_5_title_1)}</h2>
             <div className="about-logo-section">
                 {acf.about_section_5.section_5_images_1.map((imageUrl, index) => (
-                    <img key={index} src={imageUrl} alt={`Logo ${index + 1}`} />
+                    <img key={index} src={imageUrl} alt={`Logo ${index + 1}`}  loading="lazy"/>
                 ))}
             </div>
             <h2 className="right">{parse(acf.about_section_5.section_5_title_2)}</h2>
             <div className="about-logo-section">
                 {acf.about_section_5.section_5_image_2.map((imageUrl, index) => (
-                    <img key={index} src={imageUrl} alt={`Logo ${index + 1}`} />
+                    <img key={index} src={imageUrl} alt={`Logo ${index + 1}`}  loading="lazy"/>
                 ))}
             </div>
         </div>
@@ -160,6 +160,7 @@ function AboutPage() {
                     <img
                     src={acf.about_section_6.section_6_image.url}
                     alt={acf.about_section_6.section_6_image.alt || "Perception Image"}
+                    loading="lazy"
                     />
                 </div>
                 <div>

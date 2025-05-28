@@ -120,6 +120,7 @@ function Footer() {
           <img
             src="https://clubsoda.io/wp-backend/wp-content/uploads/2025/01/clubsoda-footer-logo.png"
             alt="Clubsoda Logo"
+            loading="lazy"
           />
         </div>
       </div>
@@ -131,8 +132,14 @@ function Footer() {
               <ul>
                 {getChildren(menuData, menuData.find((item) => item.title.rendered === "MENU")?.id || 0).map((item) => (
                   <li key={item.id}>
-                    <Link to={`/${item.title.rendered.toLowerCase().trim().replace(/\s+/g, "-").replace(/[^\w-]+/g, "")}`}>
-                        {item.title.rendered}
+                    <Link
+                      to={
+                        item.title.rendered.toLowerCase().trim() === "home"
+                          ? "/"
+                          : `/${item.title.rendered.toLowerCase().trim().replace(/\s+/g, "-").replace(/[^\w-]+/g, "")}`
+                      }
+                    >
+                      {item.title.rendered}
                     </Link>
                   </li>
                 ))}

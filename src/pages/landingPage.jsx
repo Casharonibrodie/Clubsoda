@@ -17,6 +17,7 @@ function LandingPage() {
   const subMenuInsideRef = useRef(null);
   const markRef = useRef(null);
   const location = useLocation();
+ 
 
 
   const [mainMenuData, setMainMenuData] = useState([]);
@@ -94,7 +95,6 @@ function LandingPage() {
   
 
   useEffect(() => {
-    // Set durations based on mobile view or not.
     const logoDuration = isMobileView ? 0.5 : 0.8;
     const textDuration = isMobileView ? 0.5 : 0.8;
     const fadeDelay = isMobileView ? 0.3 : 0.5;
@@ -121,7 +121,7 @@ function LandingPage() {
       )
       .to(logoRef.current, { opacity: 0, duration: fadeOutDuration }, '+=1')
       .to(textRef.current, { opacity: 0, duration: fadeOutDuration }, `-=${fadeDelay}`)
-      .set(wrapperRef.current, { display: 'none' })
+      .set(wrapperRef.current, { opacity: 0, pointerEvents: 'none' })
       .set(menuWrapperRef.current, { display: 'block' })
       .fromTo(
         markRef.current,
@@ -172,8 +172,6 @@ function LandingPage() {
           generateSlug(item.title.rendered) === outerMenuSlug
       );
   
-
-  
       if (outerMenu) {
         setOuterActiveMenu(outerMenu.id);
 
@@ -201,7 +199,7 @@ function LandingPage() {
       console.log(" Menu Data Not Loaded or No Outer Menu Slug.");
     }
   }, [location, mainMenuData]);
-  
+ 
 
   const decodeHTMLEntities = (str) => {
     const textarea = document.createElement("textarea");
@@ -209,7 +207,6 @@ function LandingPage() {
     return textarea.value;
   };
 
-  // Exception Mappings
   const exceptionMappings = {
     "web_based_software": "pwa_development",
     "application_modernization": "app_modernization",
@@ -334,11 +331,12 @@ const generateSlug = (title) => {
       <div className='LandingPage-Background'>
         <video
           src="https://clubsoda.io/wp-backend/wp-content/uploads/2025/01/bg.mp4"
+          poster="https://clubsoda.io/wp-backend/wp-content/uploads/2025/01/Landing.jpg"
           autoPlay
           muted
           loop
           playsInline
-          preload="auto"
+          preload="none"
         ></video>
         <div className="LandingPage-Wrapper" ref={wrapperRef}>
           <div className="LandingPage-Logo" ref={logoRef}></div>
@@ -413,6 +411,7 @@ const generateSlug = (title) => {
                               src="/assets/left.svg"
                               alt="Submenu Icon"
                               className="menu-arrow"
+                              loading='lazy'
                             />
                           </a>
                         ) : serviceExists ? (
@@ -422,6 +421,7 @@ const generateSlug = (title) => {
                               src="/assets/open.svg"
                               alt="External Link Icon"
                               className="menu-arrow"
+                              loading='lazy'
                             />
                           </Link>
                         ) : (
@@ -431,6 +431,7 @@ const generateSlug = (title) => {
                               src="/assets/open.svg"
                               alt="External Link Icon"
                               className="menu-arrow"
+                              loading='lazy'
                             />
                           </Link>
                         )}
@@ -462,6 +463,7 @@ const generateSlug = (title) => {
                               src="/assets/open.svg"
                               alt="External Link Icon"
                               className="menu-arrow"
+                              loading='lazy'
                             />
                           </Link>
                         </li>
@@ -509,6 +511,7 @@ const generateSlug = (title) => {
                               src="/assets/open.svg"
                               alt="External Link Icon"
                               className="menu-arrow"
+                              loading='lazy'
                             />
                           </a>
                         </li>
@@ -532,6 +535,7 @@ const generateSlug = (title) => {
                               src="/assets/left.svg"
                               alt="Submenu Icon"
                               className="menu-arrow"
+                              loading='lazy'
                             />
                           </a>
                         ) : (
@@ -541,6 +545,7 @@ const generateSlug = (title) => {
                               src="/assets/open.svg"
                               alt="External Link Icon"
                               className="menu-arrow"
+                              loading='lazy'
                             />
                           </Link>
                         )}
@@ -561,14 +566,14 @@ const generateSlug = (title) => {
   return (
     <div className='LandingPage-Background'>
       <video
-        src="https://clubsoda.io/wp-backend/wp-content/uploads/2025/01/bg.mp4"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-      ></video>
-  
+          src="https://clubsoda.io/wp-backend/wp-content/uploads/2025/01/bg.mp4"
+          poster="https://clubsoda.io/wp-backend/wp-content/uploads/2025/01/Landing.jpg"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="none"
+        ></video>
       <div className="LandingPage-Wrapper" ref={wrapperRef}>
         <div className="LandingPage-Logo" ref={logoRef}></div>
         <div className="LandingPage-Textbox" ref={textRef}>
@@ -641,6 +646,7 @@ const generateSlug = (title) => {
                               src='/assets/left.svg'
                               alt="Submenu Icon"
                               className="menu-arrow"
+                              loading='lazy'
                             />
                           </a>
                         ) : (
@@ -650,6 +656,7 @@ const generateSlug = (title) => {
                               src='/assets/open.svg'
                               alt="External Link Icon"
                               className="menu-arrow"
+                              loading='lazy'
                             />
                           </Link>
                         )}
@@ -681,6 +688,7 @@ const generateSlug = (title) => {
                               src="/assets/open.svg"
                               alt="External Link Icon"
                               className="menu-arrow"
+                              loading='lazy'
                             />
                           </Link>
                         </li>
@@ -728,6 +736,7 @@ const generateSlug = (title) => {
                               src="/assets/open.svg"
                               alt="External Link Icon"
                               className="menu-arrow"
+                              loading='lazy'
                             />
                           </a>
                         </li>
@@ -742,6 +751,7 @@ const generateSlug = (title) => {
                             src="/assets/open.svg"
                             alt="External Link Icon"
                             className="menu-arrow"
+                            loading='lazy'
                           />
                         </Link>
                       </li>

@@ -6,9 +6,6 @@
 .mcintosh { color: #ffffff99; text-decoration: none;}
 
 
-
-
-
 .about-logo{ background-size: contain; background-repeat: no-repeat; height: 40px; width: 265px; }
 .about-nav-links ul{  margin: 30px; }
 .about-navlinks li { list-style-type: none;  position: relative; }
@@ -19,7 +16,7 @@
     transition: color 0.2s ease;
   }
   .about-nav-links li {
-    list-style-type: none; /* Remove default bullet */
+    list-style-type: none;
     position: relative;
   }
   .about-nav-links a::before {

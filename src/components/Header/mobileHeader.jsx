@@ -98,6 +98,7 @@ function MobileHeader({ menuOpen, setMenuOpen }) {
                     className="mobile-header-logo"
                     src="https://clubsoda.io/wp-backend/wp-content/uploads/2025/01/perception-image.png"
                     alt="Logo"
+                    loading="eager"
                 />
             </Link>
             <div>
@@ -133,6 +134,7 @@ function MobileHeader({ menuOpen, setMenuOpen }) {
                             ref={bottomLogoRef}
                             src="https://clubsoda.io/wp-backend/wp-content/uploads/2025/01/clubsoda-footer-logo.png"
                             alt="Footer Logo"
+                            loading="lazy"
                         />
                     </div>
                 )}

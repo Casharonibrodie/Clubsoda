@@ -15,7 +15,7 @@ export default function SubmissionConfirmation() {
 
           <Link to='/' className="back-btn">
             <p>Back</p>
-            <img src="/assets/left.svg"></img>
+            <img src="/assets/left.svg" alt="back-button" loading="lazy"></img>
           </Link>
 
       </div>

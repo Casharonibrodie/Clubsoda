@@ -57,7 +57,7 @@ function RecruitPage() {
         muted
         loop
         playsInline
-        preload="auto"
+        preload="none"
       ></video>
         <MainHeader 
         sectionTitle={parse(acf.recruit_header.recruit_banner_text)}            
