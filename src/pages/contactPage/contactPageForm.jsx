@@ -9,7 +9,8 @@ function ContactPageForm() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [validationErrors, setValidationErrors] = useState({});
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(0);
+
 
   const [formDetails, setFormData] = useState({
       businessName: '',
@@ -197,7 +198,7 @@ const acf = data.acf;
   return (
     <div className="contact-form-background">
       <div className="contact-nav-wrapper">
-        <div className="contact-nav-header">
+        <div className={currentStep === 0 ? "contact-nav-first" : "contact-nav-header"}>
           <Link to="/">
             <div className="contact-logo"
             style={{
@@ -205,20 +206,47 @@ const acf = data.acf;
             }}
             ></div>
           </Link>
-          <div className="contact-nav-form-text">
-            <h2>{parse(acf.contact_header.contact_banner_text)}</h2>
+         <div className="contact-nav-form-text">
+            {currentStep === 0 ? (
+              <h2>FORM-ALLY INTRODUCE YOURSELF</h2>
+            ) : (
+              <h2>{parse(acf.contact_header.contact_banner_text)}</h2>
+            )}
           </div>
         </div>
       </div>
-      <div className="contact-form">
-        <div className="contact-form-wrapper">
+      <div className={currentStep === 0 ? "contact-form-first-section" : "contact-form"}>
+    <div className={currentStep === 0 ? "contact-form-first-wrapper" : "contact-form-wrapper"}>
+ 
+ {/* first section*/}    
+ {currentStep === 0 && (
+      <div className="contact-form-choice preform‐choice">
+        <div className="preform-buttons">
+          <button
+            className="preform‐button book‐call"
+            onClick={() => {
+              navigate("/book-video-call");
+            }}
+          >
+           <h4> BOOK A VIDEO CALL</h4>
+          </button>
+          <div className='preform-divider'></div>
+          <button
+            className="preform‐button go‐to‐form"
+            onClick={() => setCurrentStep(1)}
+          >
+            <h4>FILL OUT A QUICK FORM</h4>
+          </button>
+        </div>
+      </div>
+    )}
 
 {/* first form section*/}
 
 {currentStep === 1 && (
   <>
     <div className="contact-form-back">
-      <Link to="/contact">← Back</Link>
++     <a onClick={handleBack}>← Back</a>
     </div>
     <div className="contact-form-choice">
       <h3>{parse(acf.contact_form_step_1.contact_form_step_1_question)}</h3>
