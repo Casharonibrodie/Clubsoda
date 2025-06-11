@@ -28,6 +28,11 @@
 .contact-form-back a { text-decoration: none; color: #ffffff; font-size: 17px;  font-weight: 500; line-height: 27px;  letter-spacing: 0.48px; text-align: left; }
 .contact-form-back button { cursor: pointer;  background-color: transparent; border: none; color: #ffffff; font-size: 17px; font-weight: 400; line-height: 27px; letter-spacing: 0.48px; text-align: left; }
 
+body{
+  position: static !important;
+}
+
+
 .preform-buttons{
     display: flex;
     align-items: center;
@@ -40,6 +45,7 @@
 .preform-buttons button{
     background-color: transparent;
     border: none;  
+    cursor: pointer;
 }
 .preform-buttons button h4{
     color: hwb(0 100% 0% / 0.8);

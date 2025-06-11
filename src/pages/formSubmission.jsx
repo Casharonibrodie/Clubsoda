@@ -10,7 +10,7 @@ export default function SubmissionConfirmation() {
       <div className="confirmation-side confirmation-message">
         <div className="submission-content">
           <h3 className="confirmation-title">Your submission has been sent…</h3>
-          <p className="confirmation-subtitle">Speak soon!</p>
+          <p className="confirmation-subtitle">Chat soon!</p>
         </div>
 
           <Link to='/' className="back-btn">

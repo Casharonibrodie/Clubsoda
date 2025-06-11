@@ -25,6 +25,14 @@ function ScrollToTop() {
 }
 
 function App() {
+  
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://www.google.com/recaptcha/api.js?render=6LehflcrAAAAALzObdaTRymWjWX94BU_ot7l_opf"; // ← your v3 site key
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
+
   return (
     <Router>
       <ScrollToTop />

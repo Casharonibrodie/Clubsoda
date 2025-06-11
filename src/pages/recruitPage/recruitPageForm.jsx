@@ -41,7 +41,6 @@ function RecruitPageForm() {
         });
     }, [])
 
-
     const validateStep1 = () => {
       const errors = {};
       if (!formDetails.formData.category) {
@@ -106,13 +105,12 @@ function RecruitPageForm() {
         if (isValid) {
           setValidationErrors({});
     
-          // If General Inquiry is selected, skip Step 2
           if (formDetails.formData.category.toLowerCase().trim() === 'general inquiry') {
             setCurrentStep(3);
             return;
           }
     
-          setCurrentStep(2); // Otherwise, go to Step 2
+          setCurrentStep(2); 
         }
       }
     
@@ -154,26 +152,43 @@ function RecruitPageForm() {
     
 
 
-    const handleFormSubmit = async () => {
-      if (!validateStep5()) return;
-  
-      const endpoint =
-        'https://clubsoda.io/wp-backend/wp-json/form-submission/v1/submit/recruit';
-  
-      try {
-        const response = await axios.post(endpoint, formDetails, {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
-  
-        console.log('Server Response:', response.data);
-  
-        navigate('/submission-confirmation');
-      } catch (error) {
-        console.error('Error submitting form:', error);
-      }
+  const handleFormSubmit = async () => {
+  if (!validateStep5()) return;
+
+  if (!window.grecaptcha) {
+    alert("reCAPTCHA not loaded yet. Please try again.");
+    return;
+  }
+
+  console.log("Calling reCAPTCHA v3…"); 
+
+  const siteKey = "6LehflcrAAAAALzObdaTRymWjWX94BU_ot7l_opf";
+  const endpoint =
+    'https://clubsoda.io/wp-backend/wp-json/form-submission/v1/submit/recruit';
+
+  try {
+     const token = await window.grecaptcha.execute(siteKey, { action: "submit" });
+
+
+     const payload = {
+      ...formDetails,
+      captchaToken: token,
     };
+
+
+    const response = await axios.post(endpoint, payload, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    console.log('Server Response:', response.data);
+    navigate('/submission-confirmation');
+  } catch (error) {
+    console.error('Error submitting form:', error);
+  }
+};
+
   
     if (loading) {
       return <div></div>;
@@ -193,13 +208,7 @@ function RecruitPageForm() {
 
 
   const optionsKey = `${categoryKey}_option`;
-  
-  console.log('Category Key:', categoryKey);
-  console.log('Options Key:', optionsKey);
-  console.log(
-    'Options Data:',
-    acf.recruit_form_step_2?.[categoryKey]?.[optionsKey]
-  );
+
   
 
   return (
@@ -443,6 +452,7 @@ function RecruitPageForm() {
         );
       })}
     </div>
+    
     <div className="recruit-form-next">
       <button onClick={handleFormSubmit}>
         <a>Submit →</a>
@@ -450,8 +460,6 @@ function RecruitPageForm() {
     </div>
   </>
 )}
-
-
         </div>
       </div>
     </div>
